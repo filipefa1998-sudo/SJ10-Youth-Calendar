@@ -11,7 +11,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500;1,9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23C27A24'/%3E%3Cpath d='M32 8l3 8h-6zM14 56V30l4-8 4 8v26zM42 56V30l4-8 4 8v26zM24 56V26l8-10 8 10v30z' fill='%23E8C35A'/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="SJ10 Youth">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 
 <script>
 /* ============================================================
@@ -1129,6 +1135,7 @@ function renderResources(){
 }
 
 /* ---------- Boot ---------- */
+if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('sw.js').catch(()=>{});
 initStore().then(()=>{
   const m=location.hash.match(/^#e=(.+)$/);if(m)setTimeout(()=>openEvent(decodeURIComponent(m[1])),300);
 }).catch(err=>{console.error(err);toast("Couldn’t connect — showing saved calendar");renderAll()});
