@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SJ10 Youth · Rejoice in Christ 2027</title>
+<meta name="description" content="Youth calendar — activities, temple trips, camps and conferences. Rejoice in Christ, 2027.">
+<meta name="theme-color" content="#C27A24">
+<meta property="og:title" content="SJ10 Youth Calendar · Rejoice in Christ">
+<meta property="og:description" content="See every youth activity, temple trip, camp and conference through 2027.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500;1,9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23C27A24'/%3E%3Cpath d='M32 8l3 8h-6zM14 56V30l4-8 4 8v26zM42 56V30l4-8 4 8v26zM24 56V26l8-10 8 10v30z' fill='%23E8C35A'/%3E%3C/svg%3E">
+
+<script>
+/* ============================================================
+   ⚙️  SETUP — paste your Firebase web config here.
+   Leave apiKey empty to run in DEMO mode (changes save only on
+   the device you're using). See SETUP.md for the 10-minute guide.
+   ============================================================ */
+window.FIREBASE_CONFIG = {
+  apiKey: "",
+  authDomain: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: ""
+};
+/* Login accounts you create in Firebase → Authentication → Users.
+   Password = the code + "::youth"  (e.g. sj10::youth)            */
+window.AUTH_ACCOUNTS = {
+  leaders: "sj10-leaders@example.com",
+  master:  "sj10-master@example.com",
+  suffix:  "::youth"
+};
+</script>
+
+<style>
+:root{
+  --ink:#4A3826; --ink-2:#6A5440; --sun:#B8691E; --sun-grad:linear-gradient(135deg,#B8641C 0%,#D58A2C 55%,#E6A93F 100%); --sky-1:#FFF8EA; --muted:#7A7268; --line:#E7DFD2;
+  --stone:#F6F1E8; --stone-2:#EFE7DA; --card:#FFFFFF;
+  --gold:#C9A227; --gold-2:#E8C35A; --gold-3:#FFF3CF; --gold-ink:#8A6A0C;
+  --sky:#3BA3D9;
+  --radius:18px; --shadow:0 1px 2px rgba(30,28,26,.06),0 8px 24px -12px rgba(30,28,26,.18);
+  --shadow-lg:0 24px 60px -20px rgba(30,28,26,.35);
+  --display:"Fraunces",Georgia,serif; --body:"Plus Jakarta Sans",system-ui,-apple-system,Segoe UI,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--body);background:var(--stone);color:var(--ink);line-height:1.5;min-height:100vh;padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+a{color:inherit}
+input,select,textarea{font:inherit;color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 18px}
+
+/* ---------- Top bar ---------- */
+.topbar{position:sticky;top:0;z-index:40;background:rgba(246,241,232,.82);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}
+.topbar.scrolled{border-bottom-color:var(--line)}
+.topbar .wrap{display:flex;align-items:center;gap:14px;height:62px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.01em}
+.brand-mark{width:34px;height:34px;border-radius:10px;background:var(--sun-grad);display:grid;place-items:center}
+.brand small{display:block;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;line-height:1}
+.brand b{display:block;font-size:15px;line-height:1.2}
+.tabs{display:flex;gap:4px;margin-left:auto;background:var(--stone-2);padding:4px;border-radius:999px}
+.tab{padding:8px 16px;border-radius:999px;font-weight:700;font-size:14px;color:var(--ink-2);transition:all .25s}
+.tab.active{background:var(--sun-grad);color:#fff;box-shadow:0 4px 12px -4px rgba(184,100,28,.6)}
+.lockbtn{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;border:1px solid var(--line);background:var(--card);transition:transform .2s}
+.lockbtn:hover{transform:translateY(-1px)}
+.lockbtn.on{background:var(--gold-3);border-color:var(--gold-2)}
+@media (max-width:720px){.tabs{display:none}.lockbtn{margin-left:auto}}
+
+/* bottom nav (mobile) */
+.bottomnav{position:fixed;bottom:0;left:0;right:0;z-index:45;display:none;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:8px 12px calc(8px + env(safe-area-inset-bottom))}
+.bottomnav .in{display:flex;justify-content:space-around}
+.bnav{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;font-weight:700;color:var(--muted);padding:6px 14px;border-radius:14px;transition:all .25s}
+.bnav svg{width:22px;height:22px}
+.bnav.active{color:var(--ink);background:var(--gold-3)}
+@media (max-width:720px){.bottomnav{display:block}}
+@media (min-width:721px){body{padding-bottom:40px}}
+
+/* ---------- Views ---------- */
+.view{display:none;animation:viewIn .5s cubic-bezier(.2,.8,.2,1)}
+.view.active{display:block}
+@keyframes viewIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;overflow:hidden;border-radius:28px;margin:18px 0 0;min-height:440px;background:linear-gradient(180deg,#FFF9EE 0%,#FDEBCB 45%,#F9D9A6 75%,#F3C98C 100%);box-shadow:var(--shadow);isolation:isolate}
+.rays{position:absolute;left:50%;bottom:-40%;width:180%;aspect-ratio:1;transform:translateX(-50%);background:repeating-conic-gradient(from 0deg,rgba(255,255,255,.55) 0 6deg,rgba(255,255,255,0) 6deg 18deg);mask:radial-gradient(circle,#000 0 30%,transparent 62%);-webkit-mask:radial-gradient(circle,#000 0 30%,transparent 62%);animation:spin 90s linear infinite;z-index:-2}
+@keyframes spin{to{transform:translateX(-50%) rotate(360deg)}}
+.sun{position:absolute;left:72%;bottom:110px;width:300px;height:300px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,#FFF6D8 0%,rgba(255,226,140,.75) 35%,rgba(255,226,140,0) 70%);z-index:-1;animation:breathe 6s ease-in-out infinite}
+@keyframes breathe{50%{transform:translateX(-50%) scale(1.08)}}
+.hero-scene{position:absolute;left:0;right:0;bottom:0;width:100%;height:300px;z-index:0;display:block}
+@media (max-width:720px){.hero-scene{height:260px}.hero{min-height:0!important}}
+.walker{animation:walkbob 1.2s ease-in-out infinite}
+@keyframes walkbob{50%{transform:translateY(-1.6px)}}
+.robe{transform-origin:0 -64px;animation:sway 1.2s ease-in-out infinite}
+@keyframes sway{0%,100%{transform:skewX(1.6deg)}50%{transform:skewX(-1.6deg)}}
+.arm{transform-box:view-box}
+.armL{transform-origin:-13px -60px;animation:swingL 1.2s ease-in-out infinite}
+.armR{transform-origin:13px -60px;animation:swingL 1.2s ease-in-out infinite reverse}
+@keyframes swingL{0%,100%{transform:rotate(7deg)}50%{transform:rotate(-7deg)}}
+.foot{animation:step 1.2s ease-in-out infinite}
+@keyframes step{50%{transform:translateY(-1.5px)}}
+.halo{animation:haloP 5s ease-in-out infinite;transform-origin:0 34px;transform-box:view-box}
+@keyframes haloP{50%{opacity:.6;transform:scale(1.1)}}
+.tglow{animation:haloP2 4s ease-in-out infinite}
+@keyframes haloP2{50%{opacity:.55}}
+.cloud{animation:drift 60s linear infinite}
+.c2{animation-duration:80s;animation-delay:-30s}
+@keyframes drift{from{transform:translateX(-260px)}to{transform:translateX(1300px)}}
+.bird{animation:fly 22s linear infinite}
+.b1{animation-delay:0s}.b2{animation-delay:-4s}.b3{animation-delay:-9s}
+@keyframes fly{0%{transform:translate(-60px,232px)}50%{transform:translate(600px,206px)}100%{transform:translate(1260px,226px)}}
+.pathdash{animation:dash 3s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-56}}
+.hero-copy{position:relative;z-index:2;text-align:center;padding:38px 18px 250px}
+@media (max-width:720px){.hero-copy{padding-bottom:225px}}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-ink);background:rgba(255,255,255,.7);padding:6px 12px;border-radius:999px;border:1px solid rgba(201,162,39,.35)}
+.hero h1{font-family:var(--display);font-weight:700;font-style:italic;font-size:clamp(44px,9vw,88px);line-height:.95;letter-spacing:-.02em;margin:14px 0 8px;color:var(--ink)}
+.hero h1 .word{display:inline-block;opacity:0;transform:translateY(24px) rotate(-3deg);animation:wordIn .9s cubic-bezier(.2,.9,.2,1.2) forwards}
+.hero h1 .gold{background:linear-gradient(100deg,#9A7414,#E8C35A 40%,#B88B12 60%,#E8C35A);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:wordIn .9s cubic-bezier(.2,.9,.2,1.2) forwards,shimmer 5s linear infinite}
+@keyframes wordIn{to{opacity:1;transform:none}}
+@keyframes shimmer{to{background-position:-200% 0}}
+.hero .verse{font-family:var(--display);font-style:italic;font-size:clamp(15px,2.4vw,19px);color:var(--ink-2);max-width:520px;margin:0 auto}
+.hero .verse span{display:block;font-family:var(--body);font-style:normal;font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-ink);margin-top:6px}
+.spark{position:absolute;width:6px;height:6px;border-radius:50%;background:#FFD766;box-shadow:0 0 10px 2px rgba(255,215,102,.8);opacity:0;animation:float var(--d,7s) linear infinite;animation-delay:var(--delay,0s);z-index:1}
+@keyframes float{0%{opacity:0;transform:translateY(0) scale(.6)}15%{opacity:1}100%{opacity:0;transform:translateY(-300px) translateX(var(--x,20px)) scale(1.1)}}
+
+/* ---------- Ticker ---------- */
+.ticker{margin:14px 0 0;background:var(--sun-grad);color:#fff;border-radius:14px;overflow:hidden;display:flex;align-items:center;min-height:44px}
+.ticker .tag{flex:none;background:#FFF6DD;color:var(--sun);font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:0 14px;align-self:stretch;display:flex;align-items:center}
+.ticker .track{white-space:nowrap;display:inline-block;padding-left:100%;animation:marquee 26s linear infinite;font-weight:600;font-size:14px}
+.ticker:hover .track{animation-play-state:paused}
+@keyframes marquee{to{transform:translateX(-100%)}}
+.ticker .edit-ann{flex:none;padding:0 12px;color:var(--gold-2);font-weight:700;font-size:12px}
+
+/* ---------- Cards / grid ---------- */
+.section-title{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:34px 0 14px}
+.section-title h2{font-family:var(--display);font-size:clamp(24px,4vw,32px);font-weight:700;letter-spacing:-.01em}
+.section-title p{color:var(--muted);font-size:14px}
+.link-btn{font-weight:700;font-size:14px;color:var(--gold-ink);display:inline-flex;gap:6px;align-items:center}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid rgba(231,223,210,.7)}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+.home-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:16px;margin-top:16px}
+@media (max-width:860px){.home-grid{grid-template-columns:1fr}}
+
+/* Up next */
+.upnext{position:relative;overflow:hidden;padding:22px;color:#fff;background:var(--sun-grad);border:0}
+.upnext .btn-gold{background:#fff;color:var(--sun);box-shadow:0 6px 18px -8px rgba(90,40,0,.6)}
+.upnext::before{content:"";position:absolute;inset:auto -30% -60% auto;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,var(--c,#E8C35A) 0%,transparent 65%);opacity:.45;animation:breathe2 7s ease-in-out infinite}
+@keyframes breathe2{50%{transform:scale(1.2)}}
+.upnext .lbl{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:#FFF6DD;display:flex;align-items:center;gap:8px}
+.pulse{width:8px;height:8px;border-radius:50%;background:#fff;box-shadow:0 0 0 0 rgba(232,195,90,.7);animation:pulse 1.8s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(232,195,90,0)}100%{box-shadow:0 0 0 0 rgba(232,195,90,0)}}
+.upnext h3{font-family:var(--display);font-size:clamp(26px,4vw,36px);line-height:1.1;margin:10px 0 6px;position:relative}
+.upnext .meta{color:rgba(255,255,255,.88);font-size:14px;position:relative}
+.countdown{display:flex;gap:10px;margin:18px 0 16px;position:relative}
+.cd{flex:1;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:10px 6px;text-align:center}
+.cd b{display:block;font-family:var(--display);font-size:clamp(26px,5vw,38px);line-height:1;font-variant-numeric:tabular-nums}
+.cd b.tick{animation:tick .45s ease}
+@keyframes tick{0%{transform:translateY(-6px);opacity:.3}100%{transform:none;opacity:1}}
+.cd small{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.82);font-weight:700}
+.btn{text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 16px;border-radius:12px;font-weight:700;font-size:14px;transition:transform .15s,box-shadow .2s,background .2s}
+.btn:active{transform:scale(.97)}
+.btn-gold{background:linear-gradient(180deg,#F0CF6E,#D9AE33);color:var(--ink);box-shadow:0 6px 18px -8px rgba(201,162,39,.9)}
+.btn-gold:hover{box-shadow:0 10px 24px -8px rgba(201,162,39,.9)}
+.btn-ghost{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.18)}
+.btn-line{background:var(--card);border:1px solid var(--line)}
+.btn-line:hover{border-color:var(--ink-2)}
+.btn-dark{background:var(--sun-grad);color:#fff}
+.btn-danger{background:#FCE8E6;color:#B3261E}
+.row{display:flex;gap:8px;flex-wrap:wrap;position:relative}
+
+/* stats */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat{padding:16px;position:relative;overflow:hidden}
+.stat .n{font-family:var(--display);font-size:40px;font-weight:700;line-height:1}
+.stat .t{font-size:13px;color:var(--muted);font-weight:600;margin-top:4px}
+.stat .ico{position:absolute;right:12px;top:10px;font-size:26px;opacity:.9;animation:bob 3.5s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-5px) rotate(6deg)}}
+.ring{grid-column:span 2;display:flex;gap:16px;align-items:center;padding:16px}
+.ring svg{flex:none}
+.ring .rt{font-size:13px;color:var(--muted);font-weight:600}
+.ring .rh{font-family:var(--display);font-size:20px;font-weight:700}
+
+/* list of upcoming */
+.ev-list{display:grid;gap:10px}
+.ev-item{display:flex;gap:14px;align-items:center;padding:12px 14px;cursor:pointer;transition:transform .2s,box-shadow .2s;text-align:left;width:100%}
+.ev-item:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.datechip{flex:none;width:56px;border-radius:14px;overflow:hidden;text-align:center;background:var(--stone);border:1px solid var(--line)}
+.datechip .m{background:var(--c,#C9A227);color:#fff;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:3px 0}
+.datechip .d{font-family:var(--display);font-size:24px;font-weight:700;line-height:1.15;padding:3px 0 0}
+.datechip .w{font-size:10px;font-weight:700;color:var(--muted);padding-bottom:4px;text-transform:uppercase}
+.ev-item .ti{font-weight:800;font-size:15px;line-height:1.25}
+.ev-item .sub{font-size:13px;color:var(--muted);margin-top:2px}
+.ev-item .arrow{margin-left:auto;color:var(--muted);flex:none}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px;background:color-mix(in srgb,var(--c) 14%,white);color:color-mix(in srgb,var(--c) 75%,black);letter-spacing:.02em}
+
+/* FSY invitation card */
+.invite{padding:20px;position:relative;overflow:hidden;background:linear-gradient(135deg,#fff 0%,#FFF8E4 100%)}
+.invite .aims{display:flex;gap:6px;margin:10px 0 12px;flex-wrap:wrap}
+.aim{font-size:12px;font-weight:800;padding:5px 10px;border-radius:999px;background:var(--sun);color:#fff}
+.aim:nth-child(2){background:var(--gold);color:var(--ink)}
+.aim:nth-child(3){background:#fff;color:var(--sun);border:1.5px solid var(--sun)}
+.invite h3{font-family:var(--display);font-size:22px}
+.invite blockquote{font-family:var(--display);font-style:italic;font-size:18px;line-height:1.4;border-left:3px solid var(--gold);padding-left:12px;margin-top:8px;color:var(--ink-2)}
+
+/* ---------- Calendar view ---------- */
+.cal-head{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin:22px 0 12px}
+.cal-title{display:flex;align-items:center;gap:8px}
+.cal-title h2{font-family:var(--display);font-size:clamp(26px,5vw,38px);min-width:220px;text-align:center}
+.navbtn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--card);display:grid;place-items:center;transition:transform .15s}
+.navbtn:hover{transform:scale(1.06)}
+.seg{display:flex;background:var(--stone-2);border-radius:12px;padding:4px}
+.seg button{padding:8px 14px;border-radius:9px;font-weight:700;font-size:13px;color:var(--ink-2)}
+.seg button.active{background:var(--card);box-shadow:var(--shadow);color:var(--ink)}
+.filters{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 10px;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.chip{flex:none;display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);font-size:13px;font-weight:700;transition:all .2s;white-space:nowrap}
+.chip .dot{width:9px;height:9px;border-radius:50%;background:var(--c)}
+.chip.off{opacity:.45;background:transparent}
+.chip.on{border-color:var(--c);background:color-mix(in srgb,var(--c) 12%,white)}
+.search{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:0 12px;height:40px;min-width:200px;flex:1;max-width:320px}
+.search input{border:0;outline:0;background:none;width:100%;font-size:14px}
+
+.month{overflow:hidden}
+.dow{display:grid;grid-template-columns:repeat(7,1fr);background:var(--sun-grad);color:#fff;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;text-align:center}
+.dow div{padding:10px 0}
+.grid{display:grid;grid-template-columns:repeat(7,1fr)}
+.grid.anim-l{animation:slideL .4s cubic-bezier(.2,.8,.2,1)}
+.grid.anim-r{animation:slideR .4s cubic-bezier(.2,.8,.2,1)}
+@keyframes slideL{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:none}}
+@keyframes slideR{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:none}}
+.day{min-height:112px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:6px;position:relative;cursor:pointer;transition:background .2s;display:flex;flex-direction:column;gap:3px;text-align:left}
+.day:nth-child(7n){border-right:0}
+.day:hover{background:#FFFCF4}
+.day.other{background:#FBF8F2;color:#B8AFA2}
+.day.family{background:repeating-linear-gradient(135deg,#FFF6D6 0 10px,#FFFBEC 10px 20px)}
+.day .num{font-weight:800;font-size:13px;width:26px;height:26px;display:grid;place-items:center;border-radius:50%}
+.day.today .num{background:var(--gold);color:#fff;box-shadow:0 0 0 4px rgba(201,162,39,.2);animation:pulse2 2.4s infinite}
+@keyframes pulse2{50%{box-shadow:0 0 0 8px rgba(201,162,39,.08)}}
+.mini-ev{font-size:11.5px;font-weight:700;padding:3px 6px;border-radius:6px;background:color-mix(in srgb,var(--c) 15%,white);color:color-mix(in srgb,var(--c) 70%,black);border-left:3px solid var(--c);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:transform .15s}
+.mini-ev:hover{transform:translateX(2px)}
+.more{font-size:11px;font-weight:700;color:var(--muted);padding-left:4px}
+.fam-label{font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#9A7A14}
+@media (max-width:720px){
+  .day{min-height:64px;padding:4px;align-items:center}
+  .mini-ev,.more,.fam-label{display:none}
+  .dots{display:flex!important}
+}
+.dots{display:none;gap:3px;flex-wrap:wrap;justify-content:center}
+.dots i{width:7px;height:7px;border-radius:50%;background:var(--c)}
+
+/* agenda */
+.agenda-month{margin:22px 0 10px;display:flex;align-items:center;gap:12px}
+.agenda-month h3{font-family:var(--display);font-size:24px}
+.agenda-month::after{content:"";flex:1;height:1px;background:var(--line)}
+.fam-banner{display:flex;gap:12px;align-items:center;padding:12px 14px;border-radius:14px;background:repeating-linear-gradient(135deg,#FFF3C9 0 12px,#FFF9E6 12px 24px);border:1px dashed #E3C35C;font-weight:700;font-size:14px;cursor:pointer;width:100%;text-align:left}
+.fam-banner small{display:block;font-weight:600;color:var(--muted);font-size:12px}
+
+/* year */
+.year{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media (max-width:980px){.year{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:640px){.year{grid-template-columns:repeat(2,1fr);gap:10px}}
+.ymonth{padding:12px;cursor:pointer;transition:transform .2s,box-shadow .2s;text-align:left;width:100%}
+.ymonth:hover{transform:translateY(-3px) rotate(-.4deg);box-shadow:var(--shadow-lg)}
+.ymonth h4{font-family:var(--display);font-size:17px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center}
+.ymonth h4 span{font-family:var(--body);font-size:11px;color:var(--muted);font-weight:700}
+.ygrid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.ygrid div{aspect-ratio:1;display:grid;place-items:center;font-size:10px;font-weight:700;border-radius:5px;color:var(--ink-2)}
+.ygrid .h{color:var(--muted);font-size:9px}
+.ygrid .has{color:#fff;background:var(--c)}
+.ygrid .fam{background:#FCEBA9;color:#6B5308}
+.ygrid .td{outline:2px solid var(--gold);outline-offset:-1px}
+
+/* legend */
+.legend{display:flex;flex-wrap:wrap;gap:10px 16px;margin:14px 0 0;font-size:12px;font-weight:600;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:10px;height:10px;border-radius:3px;background:var(--c)}
+
+/* ---------- Resources ---------- */
+.aims-hero{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+@media (max-width:720px){.aims-hero{grid-template-columns:1fr}}
+.aimcard{padding:20px;position:relative;overflow:hidden;color:#fff;border:0}
+.aimcard h3{font-family:var(--display);font-size:30px;font-style:italic}
+.aimcard p{font-size:14px;opacity:.9;margin-top:4px}
+.aimcard .big{position:absolute;right:-6px;bottom:-24px;font-family:var(--display);font-size:110px;font-weight:700;opacity:.12;line-height:1}
+.res-group h3{font-family:var(--display);font-size:22px;margin:28px 0 10px;display:flex;align-items:center;gap:8px}
+.res-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.res{padding:16px;display:flex;gap:12px;align-items:flex-start;text-decoration:none;transition:transform .2s,box-shadow .2s}
+.res:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.res .ri{flex:none;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:20px;background:var(--gold-3)}
+.res b{display:block;font-size:15px}
+.res small{display:block;color:var(--muted);font-size:13px;line-height:1.4;margin-top:2px}
+.res .ext{margin-left:auto;color:var(--muted);flex:none}
+
+/* ---------- Modals ---------- */
+.scrim{position:fixed;inset:0;background:rgba(20,18,16,.5);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:80;display:none;align-items:flex-end;justify-content:center;opacity:0;transition:opacity .25s}
+.scrim.open{display:flex;opacity:1}
+@media (min-width:721px){.scrim{align-items:center}}
+.sheet{background:var(--card);width:100%;max-width:560px;max-height:92vh;overflow:auto;border-radius:24px 24px 0 0;box-shadow:var(--shadow-lg);animation:sheetUp .4s cubic-bezier(.2,.9,.2,1)}
+@media (min-width:721px){.sheet{border-radius:24px}}
+@keyframes sheetUp{from{transform:translateY(60px);opacity:0}to{transform:none;opacity:1}}
+.sheet-head{position:relative;padding:22px 22px 18px;color:#fff;background:var(--c,#C27A24);overflow:hidden}
+.sheet-head::after{content:"";position:absolute;right:-60px;top:-60px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.12)}
+.sheet-head .x{position:absolute;right:14px;top:14px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.2);display:grid;place-items:center;z-index:2;color:#fff}
+.sheet-head .emo{font-size:38px;display:inline-block;animation:pop .6s cubic-bezier(.2,1.6,.4,1)}
+@keyframes pop{from{transform:scale(0) rotate(-30deg)}to{transform:none}}
+.sheet-head h3{font-family:var(--display);font-size:28px;line-height:1.1;margin-top:6px;position:relative;z-index:1;padding-right:30px}
+.sheet-head .cat{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;opacity:.85}
+.sheet-body{padding:18px 22px 24px}
+.info{display:grid;gap:12px;margin-bottom:16px}
+.info div{display:flex;gap:12px;align-items:flex-start;font-size:15px}
+.info .k{flex:none;width:34px;height:34px;border-radius:10px;background:var(--stone);display:grid;place-items:center;font-size:16px}
+.info small{display:block;color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.desc{white-space:pre-wrap;font-size:15px;color:var(--ink-2);background:var(--stone);padding:12px 14px;border-radius:12px;margin-bottom:16px}
+.byline{font-size:12px;color:var(--muted);margin-top:14px}
+
+/* forms */
+.form{display:grid;gap:12px}
+.form label{display:grid;gap:5px;font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-2)}
+.form input,.form select,.form textarea{border:1.5px solid var(--line);border-radius:12px;padding:11px 12px;font-size:15px;background:#fff;text-transform:none;letter-spacing:0;font-weight:500;outline:0;transition:border-color .2s,box-shadow .2s;width:100%}
+.form input:focus,.form select:focus,.form textarea:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(201,162,39,.15)}
+.form .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form textarea{min-height:90px;resize:vertical}
+.hint{font-size:12px;color:var(--muted);font-weight:500;text-transform:none;letter-spacing:0}
+.codebox{display:flex;gap:8px;justify-content:center;margin:8px 0}
+.codebox input{text-align:center;font-size:22px;letter-spacing:.2em;font-weight:800}
+.shake{animation:shake .4s}
+@keyframes shake{20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+
+/* leader bar + fab */
+.leaderbar{display:none;margin:14px 0 0;padding:10px 14px;border-radius:14px;background:var(--gold-3);border:1px solid var(--gold-2);font-size:14px;font-weight:600;align-items:center;gap:10px;flex-wrap:wrap}
+.leaderbar.show{display:flex}
+.leaderbar .who{font-weight:800}
+.fab{position:fixed;right:18px;bottom:calc(96px + env(safe-area-inset-bottom));z-index:46;width:58px;height:58px;border-radius:18px;background:linear-gradient(180deg,#F0CF6E,#D9AE33);color:var(--ink);font-size:28px;font-weight:800;box-shadow:0 12px 30px -10px rgba(140,100,10,.8);display:none;place-items:center;transition:transform .2s}
+.fab:hover{transform:rotate(90deg) scale(1.05)}
+.fab.show{display:grid}
+@media (min-width:721px){.fab{bottom:28px;right:28px}}
+
+/* toast */
+.toast{position:fixed;left:50%;bottom:calc(100px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);background:var(--sun);color:#fff;padding:12px 18px;border-radius:14px;font-weight:700;font-size:14px;z-index:100;opacity:0;pointer-events:none;transition:all .3s;box-shadow:var(--shadow-lg);max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%)}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:120}
+
+.demo-flag{font-size:11px;font-weight:800;background:#FCE8E6;color:#B3261E;padding:3px 8px;border-radius:999px;letter-spacing:.04em}
+.foot{text-align:center;color:var(--muted);font-size:12px;margin:40px 0 10px}
+.foot b{color:var(--ink-2)}
+.empty{padding:28px;text-align:center;color:var(--muted)}
+.qr{display:grid;place-items:center;padding:12px;background:#fff;border-radius:14px;border:1px solid var(--line);margin:12px auto;width:max-content}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.hero h1 .word{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header class="topbar" id="topbar">
+  <div class="wrap">
+    <div class="brand">
+      <div class="brand-mark"><svg width="20" height="20" viewBox="0 0 64 64"><path d="M32 4l3 8h-6zM10 60V30l4-8 4 8v30zM46 60V30l4-8 4 8v30zM22 60V24l10-12 10 12v36z" fill="#fff"/></svg></div>
+      <div><small id="brandSmall">Youth · 2027</small><b id="brandName">SJ10 Youth</b></div>
+    </div>
+    <nav class="tabs" role="tablist">
+      <button class="tab active" data-go="home">Home</button>
+      <button class="tab" data-go="calendar">Calendar</button>
+      <button class="tab" data-go="resources">Resources</button>
+    </nav>
+    <button class="lockbtn" id="lockBtn" title="Leader sign in" aria-label="Leader sign in">
+      <svg id="lockIco" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="leaderbar" id="leaderBar"></div>
+
+  <!-- ================= HOME ================= -->
+  <section class="view active" id="view-home">
+    <div class="hero" id="hero">
+      <div class="rays"></div><div class="sun"></div>
+      <div class="hero-copy">
+        <span class="eyebrow">✦ <span id="heroEyebrow">2027 Youth Theme</span> ✦</span>
+        <h1><span class="word" style="animation-delay:.1s">Rejoice</span> <span class="word" style="animation-delay:.25s">in</span> <span class="word gold" style="animation-delay:.4s">Christ</span></h1>
+        <p class="verse">“Rejoice in the Lord alway: and again I say, Rejoice.”<span>Philippians 4:4</span></p>
+      </div>
+      <svg class="hero-scene" viewBox="0 0 1200 440" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <defs>
+          <linearGradient id="farM" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D9CBE3"/><stop offset="1" stop-color="#EAD9D4"/></linearGradient>
+          <linearGradient id="midM" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B8A9CC"/><stop offset="1" stop-color="#D6C3C8"/></linearGradient>
+          <linearGradient id="hillA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A9C49A"/><stop offset="1" stop-color="#8DB07D"/></linearGradient>
+          <linearGradient id="hillB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#92B583"/><stop offset="1" stop-color="#6F9963"/></linearGradient>
+          <linearGradient id="pathG" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#FBEBC4"/><stop offset="1" stop-color="#FFF7E2"/></linearGradient>
+          <linearGradient id="goldg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE7A0"/><stop offset="1" stop-color="#D9AE33"/></linearGradient>
+          <linearGradient id="robe" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#EFE6D6"/><stop offset=".55" stop-color="#FFFDF7"/><stop offset="1" stop-color="#F3EADB"/></linearGradient>
+          <radialGradient id="halo"><stop offset="0" stop-color="#FFF4C8" stop-opacity=".95"/><stop offset="1" stop-color="#FFF4C8" stop-opacity="0"/></radialGradient>
+          <radialGradient id="tglow"><stop offset="0" stop-color="#FFE9A8" stop-opacity=".9"/><stop offset="1" stop-color="#FFE9A8" stop-opacity="0"/></radialGradient>
+        </defs>
+
+        <!-- clouds -->
+        <g class="clouds" fill="#fff" opacity=".75">
+          <g class="cloud c1"><ellipse cx="200" cy="120" rx="70" ry="16"/><ellipse cx="240" cy="108" rx="40" ry="18"/><ellipse cx="170" cy="112" rx="30" ry="13"/></g>
+          <g class="cloud c2"><ellipse cx="960" cy="90" rx="60" ry="13"/><ellipse cx="990" cy="80" rx="32" ry="15"/></g>
+        </g>
+
+        <!-- far mountains -->
+        <path d="M0 300 L90 230 L170 262 L270 180 L360 238 L450 196 L560 250 L660 170 L760 222 L860 150 L960 214 L1060 176 L1200 236 L1200 440 L0 440Z" fill="url(#farM)"/>
+        <path d="M270 180 L292 196 L280 194 L270 202 L258 194 L250 196Z M660 170 L684 188 L670 186 L660 194 L648 186 L638 188Z M860 150 L886 170 L872 167 L860 176 L848 168 L834 170Z" fill="#fff" opacity=".85"/>
+
+        <!-- temple on the far hill, with glow -->
+        <ellipse cx="860" cy="246" rx="120" ry="70" fill="url(#tglow)" class="tglow"/>
+        <g class="temple" transform="translate(860 262)">
+          <g fill="#FFFBF1" stroke="#D8C7A6" stroke-width="1">
+            <rect x="-34" y="-30" width="68" height="30"/>
+            <rect x="-30" y="-48" width="10" height="48"/><path d="M-30 -48 L-25 -64 L-20 -48Z"/>
+            <rect x="-17" y="-44" width="8" height="44"/><path d="M-17 -44 L-13 -57 L-9 -44Z"/>
+            <rect x="20" y="-48" width="10" height="48"/><path d="M20 -48 L25 -64 L30 -48Z"/>
+            <rect x="9" y="-44" width="8" height="44"/><path d="M9 -44 L13 -57 L17 -44Z"/>
+            <rect x="-6" y="-56" width="12" height="56"/><path d="M-6 -56 L0 -74 L6 -56Z"/>
+          </g>
+          <circle cx="0" cy="-76" r="2.2" fill="url(#goldg)"/>
+          <path d="M-3.5 0 V-7 a3.5 3.5 0 0 1 7 0 V0Z" fill="url(#goldg)"/>
+          <g fill="#E8C35A" opacity=".8"><rect x="-27" y="-38" width="2" height="6"/><rect x="25" y="-38" width="2" height="6"/><rect x="-1" y="-44" width="2" height="7"/></g>
+        </g>
+
+        <!-- mid mountains -->
+        <path d="M0 330 L120 268 L220 300 L330 246 L430 290 L520 262 L600 300 L700 270 L790 300 L860 268 L960 300 L1080 258 L1200 300 L1200 440 L0 440Z" fill="url(#midM)" opacity=".9"/>
+
+        <!-- birds -->
+        <g class="birds" fill="none" stroke="#8A6A4A" stroke-width="2.2" stroke-linecap="round">
+          <path class="bird b1" d="M0 0 q6 -6 12 0 q6 -6 12 0"/>
+          <path class="bird b2" d="M0 0 q5 -5 10 0 q5 -5 10 0"/>
+          <path class="bird b3" d="M0 0 q4 -4 8 0 q4 -4 8 0"/>
+        </g>
+
+        <!-- hills -->
+        <path d="M0 360 C160 320 300 330 440 346 C560 360 640 326 760 318 C880 310 1040 330 1200 318 L1200 440 L0 440Z" fill="url(#hillA)"/>
+        <path d="M0 400 C180 372 340 380 480 392 C640 406 780 376 940 380 C1060 384 1140 372 1200 378 L1200 440 L0 440Z" fill="url(#hillB)"/>
+
+        <!-- winding path from viewer toward the temple -->
+        <path d="M520 440 C560 410 640 400 640 380 C640 360 600 352 640 336 C690 318 780 312 820 300 C840 294 852 284 858 270 L866 270 C864 288 852 300 830 308 C790 322 704 332 664 346 C634 358 668 370 668 384 C668 408 610 420 600 440Z" fill="url(#pathG)"/>
+        <path class="pathdash" d="M560 440 C600 412 654 402 654 382 C654 362 620 354 652 341 C700 324 790 316 826 304 C846 296 856 286 862 272" fill="none" stroke="#E8C35A" stroke-width="2" stroke-dasharray="2 12" stroke-linecap="round"/>
+
+        <!-- flowers -->
+        <g class="flowers">
+          <circle cx="430" cy="404" r="3" fill="#F6C1CF"/><circle cx="452" cy="412" r="2.5" fill="#FFE18A"/><circle cx="760" cy="398" r="3" fill="#F6C1CF"/><circle cx="790" cy="408" r="2.5" fill="#fff"/><circle cx="300" cy="410" r="2.5" fill="#FFE18A"/><circle cx="940" cy="396" r="3" fill="#fff"/><circle cx="1010" cy="402" r="2.5" fill="#F6C1CF"/>
+        </g>
+
+        <!-- the Savior, walking up the path toward the mountains and the temple -->
+        <g transform="translate(646 392)">
+          <ellipse cx="0" cy="34" rx="90" ry="90" fill="url(#halo)" class="halo"/>
+          <ellipse cx="4" cy="2" rx="26" ry="5" fill="#6F9963" opacity=".35"/>
+          <g class="walker">
+            <!-- left arm (behind) -->
+            <g class="arm armL"><path d="M-15 -60 C-21 -48 -24 -36 -24 -26 L-17 -25 C-16 -36 -13 -48 -10 -58Z" fill="#EDE3D1"/><circle cx="-20.5" cy="-24" r="3.4" fill="#C99A78"/></g>
+            <!-- robe -->
+            <path class="robe" d="M-15 -64 C-20 -40 -24 -18 -27 0 C-12 4 12 4 27 0 C24 -18 20 -40 15 -64 C8 -69 -8 -69 -15 -64Z" fill="url(#robe)" stroke="#E2D4BA" stroke-width="1"/>
+            <path d="M-6 -30 C-8 -18 -10 -8 -11 1 M7 -28 C8 -16 10 -6 11 1" stroke="#E6DAC4" stroke-width="1.4" fill="none"/>
+            <!-- red mantle over the shoulder -->
+            <path d="M15 -64 C10 -50 0 -36 -14 -24 C-18 -20 -22 -12 -24 -6 C-18 -10 -10 -14 -2 -22 C8 -34 16 -48 19 -60Z" fill="#A8323A"/>
+            <path d="M15 -64 C8 -67 -2 -68 -10 -66 C-4 -64 6 -62 15 -64Z" fill="#8E2730"/>
+            <!-- right arm -->
+            <g class="arm armR"><path d="M15 -60 C21 -48 24 -36 24 -26 L17 -25 C16 -36 13 -48 10 -58Z" fill="#F6EFE2"/><circle cx="20.5" cy="-24" r="3.4" fill="#C99A78"/></g>
+            <!-- head & hair (seen from behind) -->
+            <path d="M-8 -66 C-9 -72 -9 -78 -8 -82 L8 -82 C9 -78 9 -72 8 -66 C4 -64 -4 -64 -8 -66Z" fill="#6B4A2E"/>
+            <circle cx="0" cy="-83" r="9" fill="#7A5535"/>
+            <!-- feet peeking -->
+            <ellipse cx="-7" cy="1.5" rx="4.5" ry="2" fill="#9C7A5A"/><ellipse cx="7" cy="1.5" rx="4.5" ry="2" fill="#9C7A5A" class="foot"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+
+    <div class="ticker" id="ticker"><div class="tag">📣 News</div><div style="overflow:hidden;flex:1"><span class="track" id="tickerText"></span></div></div>
+
+    <div class="home-grid">
+      <div class="card upnext reveal" id="upNext"></div>
+      <div class="stats" id="stats"></div>
+    </div>
+
+    <div class="section-title reveal"><div><h2>Coming up</h2><p>The next few things on the calendar</p></div><button class="link-btn" data-go="calendar">Full calendar →</button></div>
+    <div class="ev-list" id="upcomingList"></div>
+
+    <div class="section-title reveal"><div><h2>This month’s invitation</h2><p>Fast Sunday — pick one FSY invitation and live it all month</p></div></div>
+    <div class="card invite reveal" id="inviteCard"></div>
+  </section>
+
+  <!-- ================= CALENDAR ================= -->
+  <section class="view" id="view-calendar">
+    <div class="cal-head">
+      <div class="cal-title">
+        <button class="navbtn" id="prevBtn" aria-label="Previous">‹</button>
+        <h2 id="calTitle">—</h2>
+        <button class="navbtn" id="nextBtn" aria-label="Next">›</button>
+      </div>
+      <div class="row">
+        <div class="seg" id="viewSeg">
+          <button data-v="month" class="active">Month</button>
+          <button data-v="agenda">List</button>
+          <button data-v="year">Year</button>
+        </div>
+        <button class="btn btn-line" id="todayBtn">Today</button>
+      </div>
+    </div>
+    <div class="row" style="align-items:center;margin-bottom:8px">
+      <label class="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="searchBox" placeholder="Search events…"></label>
+      <button class="btn btn-line" id="icsAllBtn">📅 Add all to my calendar</button>
+      <button class="btn btn-line" id="shareBtn">🔗 Share</button>
+    </div>
+    <div class="filters" id="filters"></div>
+    <div id="calBody"></div>
+    <div class="legend" id="legend"></div>
+  </section>
+
+  <!-- ================= RESOURCES ================= -->
+  <section class="view" id="view-resources">
+    <div class="section-title" style="margin-top:24px"><div><h2>Believe · Belong · Become</h2><p>The Children and Youth program, refined for January 2027</p></div></div>
+    <div class="aims-hero">
+      <div class="card aimcard reveal" style="background:linear-gradient(135deg,#B8641C,#D58A2C)"><div class="big">1</div><h3>Believe</h3><p>Grow faith in Jesus Christ — scriptures, seminary, “Come, Follow Me,” and your monthly FSY invitation.</p></div>
+      <div class="card aimcard reveal" style="background:linear-gradient(135deg,#E9B949,#F6D77C);color:#4A3826"><div class="big">2</div><h3>Belong</h3><p>Activities, service and camps — and helping everyone around you feel they belong too.</p></div>
+      <div class="card aimcard reveal" style="background:linear-gradient(135deg,#4F95C2,#7DB8DD)"><div class="big">3</div><h3>Become</h3><p>Ordinances and covenants, ministering, and knowing who you are and why you’re here.</p></div>
+    </div>
+    <div id="resources"></div>
+  </section>
+
+  <p class="foot">Made with ♡ for the youth · <b id="footWard">SJ10</b> · <span id="modeFlag"></span><br>Not an official Church website. Links go to ChurchofJesusChrist.org and related official sites.</p>
+</main>
+
+<nav class="bottomnav"><div class="in">
+  <button class="bnav active" data-go="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 12 4l9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home</button>
+  <button class="bnav" data-go="calendar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Calendar</button>
+  <button class="bnav" data-go="resources"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5M9 7h6"/></svg>Resources</button>
+</div></nav>
+
+<button class="fab" id="fab" title="Add event" aria-label="Add event">+</button>
+<div class="scrim" id="scrim"><div class="sheet" id="sheet"></div></div>
+<div class="toast" id="toast"></div>
+<canvas id="confetti"></canvas>
+
+<script>
+/* =====================================================================
+   DATA
+   ===================================================================== */
+const CATS = {
+  combined:{label:"Combined Youth",color:"#C9A227",emo:"🎉"},
+  yw:{label:"Young Women",color:"#D9577B",emo:"🌸"},
+  ym:{label:"Young Men",color:"#2F7FB8",emo:"🏔️"},
+  temple:{label:"Temple",color:"#3BA3D9",emo:"🕊️"},
+  camp:{label:"Camps",color:"#3A9D5D",emo:"🏕️"},
+  ward:{label:"Ward & Stake",color:"#7B61C9",emo:"⛪"},
+  service:{label:"Fundraiser & Service",color:"#E8833A",emo:"🤝"},
+  church:{label:"Churchwide",color:"#8A6A4A",emo:"🌎"},
+  family:{label:"Family Week (no activity)",color:"#E3C35C",emo:"🏡"}
+};
+const S = (id,title,cat,start,end,extra={}) => ({id:"seed-"+id,title,cat,start,end:end||start,author:"Unga",seed:true,...extra});
+const SEED = [
+  // December 2026 (from the glance sheet notes)
+  S("d1","Temple Lights","combined","2026-12-02",null,{desc:"Combined youth activity — see the Christmas lights at the temple."}),
+  S("d2","White Elephant Gift Exchange","combined","2026-12-16",null,{desc:"Bring a wrapped white-elephant gift. Combined youth activity."}),
+  // Combined activities — 3rd week
+  ...[["01-20"],["02-17"],["04-21"],["05-19"],["06-16"],["08-18"],["09-15"],["10-20"],["11-17"],["12-15"]].map(([d],i)=>S("c"+i,"Combined Youth Activity","combined","2027-"+d,null,{desc:"3rd-week combined activity, unless leaders announce otherwise."})),
+  // Youth temple baptisms — last Saturday-ish
+  ...["01-30","02-27","03-27","04-24","05-29","06-26","07-31","08-28","09-25","10-30","11-20","12-18"].map((d,i)=>S("t"+i,"Youth Temple Baptisms","temple","2027-"+d,null,{desc:"Bring your temple recommend. Take family names if you have them!",bring:"Temple recommend · family names"})),
+  S("tv","Youth Temple Visit — Salt Lake Temple Celebration","temple","2027-05-06",null,{desc:"Group visit during the Salt Lake Temple Celebration open house. 100 tickets reserved — tell your leaders if you're coming."}),
+  S("perf","Temple Celebration Performance","temple","2027-08-03",null,{desc:"Youth performance for the Salt Lake Temple Celebration."}),
+  S("fund","Youth Fundraiser","service","2027-04-17",null,{desc:"Youth fundraiser — details coming from leaders."}),
+  S("ywc","Young Women Camp","camp","2027-06-09","2027-06-12",{cat:"yw",desc:"YW Camp! Packing list and permission forms coming from leaders."}),
+  S("ymc","Young Men Camp","camp","2027-07-08","2027-07-10",{cat:"ym",desc:"YM Camp! Packing list and permission forms coming from leaders."}),
+  S("wcamp","Ward Camp","camp","2027-06-17","2027-06-19",{desc:"Whole-ward camp — families welcome."}),
+  S("wconf","Ward Conference","ward","2027-03-15","2027-03-21",{desc:"Ward conference week. Ward conference Sunday is March 21."}),
+  S("sc1","Stake Conference","ward","2027-05-10","2027-05-16",{desc:"Stake conference week. Conference Sunday is May 16."}),
+  S("sc2","Stake Conference","ward","2027-11-08","2027-11-14",{desc:"Stake conference week. Conference Sunday is November 14."}),
+  // Family weeks — no youth activities
+  S("f1","Spring Break & General Conference","family","2027-03-28","2027-04-04",{desc:"Family week — no youth activity. General Conference is April 3–4."}),
+  S("f2","Memorial Day","family","2027-05-31"),
+  S("f3","4th of July","family","2027-06-27","2027-07-04",{desc:"Family week — no youth activity."}),
+  S("f4","Pioneer Day","family","2027-07-18","2027-07-24",{desc:"Family week — no youth activity."}),
+  S("f5","Labor Day","family","2027-09-06"),
+  S("f6","General Conference","family","2027-09-26","2027-10-03",{desc:"Family week — no youth activity. General Conference is October 2–3."}),
+  S("f7","Thanksgiving","family","2027-11-21","2027-11-27",{desc:"Family week — no youth activity."}),
+  S("f8","Christmas","family","2027-12-19","2027-12-25",{desc:"Family week — no youth activity."}),
+  // Churchwide 2027
+  S("w1","“Rejoice in Christ” Worldwide Discussion for Youth","church","2027-01-16",null,{desc:"Video for youth about the 2027 theme with an Apostle and other leaders. Watch any time after it's released.",link:"https://www.churchofjesuschrist.org/study/youth/events?lang=eng"}),
+  S("w2","RootsTech","church","2027-03-04","2027-03-06",{desc:"Family history conference — online or in Salt Lake City.",link:"https://www.familysearch.org/en/rootstech/"}),
+  S("w3","Easter Sunday","church","2027-03-28",null,{desc:"Palm Sunday is March 21. Special Easter sacrament meeting.",link:"https://www.churchofjesuschrist.org/tools/seasonal-resources"}),
+  S("w4","General Conference","church","2027-04-03","2027-04-04",{time:"10:00",endTime:"16:00",desc:"Sessions at 10 a.m. and 2 p.m. MDT.",link:"https://www.churchofjesuschrist.org/study/general-conference"}),
+  S("w5","Salt Lake Temple Celebration opens","church","2027-04-05",null,{desc:"The renovated Salt Lake Temple opens to the public through October 1. Opening event April 10.",link:"https://www.templesquare.org/"}),
+  S("w6","General Conference","church","2027-10-02","2027-10-03",{time:"10:00",endTime:"16:00",desc:"Sessions at 10 a.m. and 2 p.m. MDT.",link:"https://www.churchofjesuschrist.org/study/general-conference"}),
+  S("w7","First Presidency’s Christmas Devotional","church","2027-12-05",null,{link:"https://www.churchofjesuschrist.org/study/videos-and-images/broadcasts-and-devotionals/christmas-devotionals"})
+].map(e=>{ if(e.id==="seed-ywc") e.cat="yw"; if(e.id==="seed-ymc") e.cat="ym"; return e; });
+
+const RESOURCES = [
+  {g:"✨ 2027 Theme · Rejoice in Christ",items:[
+    {i:"🎵",t:"Youth theme hub",d:"Theme music, logo, posters and the theme video",u:"https://youth.churchofjesuschrist.org"},
+    {i:"📺",t:"Worldwide Discussion for Youth",d:"Jan 16, 2027 — the theme explained by Church leaders",u:"https://www.churchofjesuschrist.org/study/youth/events?lang=eng"},
+    {i:"🏛️",t:"Salt Lake Temple Celebration",d:"Apr 5 – Oct 1, 2027 · tickets, virtual tours, events",u:"https://www.templesquare.org/"}
+  ]},
+  {g:"📖 Believe",items:[
+    {i:"🧭",t:"For the Strength of Youth guide",d:"Where your monthly invitations come from",u:"https://www.churchofjesuschrist.org/study/manual/for-the-strength-of-youth?lang=eng"},
+    {i:"📘",t:"Come, Follow Me — New Testament 2027",d:"This year’s home and church study",u:"https://www.churchofjesuschrist.org/study/manual/come-follow-me-for-home-and-church-new-testament-2027?lang=eng"},
+    {i:"📰",t:"FSY Magazine · Jan 2027 Tool Kit",d:"The new program, explained for youth",u:"https://www.churchofjesuschrist.org/study/ftsoy/2027/01/tool-kit/00-cover?lang=eng"}
+  ]},
+  {g:"🤝 Belong",items:[
+    {i:"🔥",t:"FSY Conferences",d:"Register and find your session",u:"https://fsy.churchofjesuschrist.org"},
+    {i:"🧰",t:"Youth Tool Kit",d:"Planning activities, camps and more",u:"https://www.churchofjesuschrist.org/study/manual/youth-tool-kit?lang=eng"}
+  ]},
+  {g:"🕊️ Become",items:[
+    {i:"📅",t:"Schedule a temple appointment",d:"Book baptisms for your own family names",u:"https://www.churchofjesuschrist.org/temples/schedule/appointment?lang=eng"},
+    {i:"🌳",t:"FamilySearch",d:"Find family names to take to the temple",u:"https://www.familysearch.org"},
+    {i:"❓",t:"Program FAQs for Youth",d:"Emblems, invitations and what’s new",u:"https://www.churchofjesuschrist.org/study/manual/program-faqs-for-youth/program-faqs-for-youth?lang=eng"}
+  ]},
+  {g:"👨‍👩‍👧 Parents & Leaders",items:[
+    {i:"📗",t:"Parent and Leader Guide",d:"Children and Youth program, 2027",u:"https://www.churchofjesuschrist.org/study/manual/parent-and-leader-guide-for-children-and-youth-program?lang=eng"},
+    {i:"🗓️",t:"2027 Churchwide calendar",d:"Broadcasts and key events for the year",u:"https://newsroom.churchofjesuschrist.org/article/calendar"},
+    {i:"🏠",t:"Ward & stake calendar",d:"Official calendar (sign in)",u:"https://calendar.churchofjesuschrist.org"},
+    {i:"🎤",t:"General Conference",d:"Apr 3–4 and Oct 2–3, 2027",u:"https://www.churchofjesuschrist.org/study/general-conference"},
+    {i:"🧩",t:"Temple Celebration toolkit",d:"Ideas for wards and stakes",u:"https://guide.churchofjesuschrist.org/local/salt-lake-temple-celebration-toolkit"}
+  ]}
+];
+
+const DEFAULT_SETTINGS = {
+  wardName:"SJ10 Youth",
+  announcement:"Welcome to the 2027 youth calendar! ✦ Rejoice in Christ ✦ Combined activity is the 3rd week of every month unless leaders say otherwise ✦ Youth temple baptisms near the end of each month — bring your recommend!",
+  invites:{},
+  seedPublished:false
+};
+const DEFAULT_INVITE = "Choose one invitation from the For the Strength of Youth guide on fast Sunday — then live it all month. Share how it went with a friend or your family.";
+const CODE_HASH = {
+  leader:"f94307cd30ae73d5efa3ca319d91206edf741e0234bdbc7af8c36a6180dbd046",
+  master:"a2382a597b79a6f50bdbd9b936def383590ed71e1bc7bb4a7dc883e243752cdb"
+};
+
+/* =====================================================================
+   HELPERS
+   ===================================================================== */
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const pad=n=>String(n).padStart(2,"0");
+const ymd=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const parse=s=>{const [y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d)};
+const addDays=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+const MON=["January","February","March","April","May","June","July","August","September","October","November","December"];
+const DOW=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fmtTime=t=>{if(!t)return"";let [h,m]=t.split(":").map(Number);const ap=h>=12?"PM":"AM";h=h%12||12;return `${h}:${pad(m)} ${ap}`};
+const fmtRange=e=>{const a=parse(e.start),b=parse(e.end||e.start);
+  const A=`${DOW[a.getDay()]}, ${MON[a.getMonth()].slice(0,3)} ${a.getDate()}`;
+  if(e.end&&e.end!==e.start){return `${A} – ${b.getMonth()===a.getMonth()?b.getDate():MON[b.getMonth()].slice(0,3)+" "+b.getDate()}${b.getFullYear()!==a.getFullYear()?", "+b.getFullYear():""}`}
+  return A+(a.getFullYear()!==new Date().getFullYear()?", "+a.getFullYear():"")};
+const fmtTimes=e=>e.time?(fmtTime(e.time)+(e.endTime?" – "+fmtTime(e.endTime):"")):"Time TBA";
+const sha=async s=>{const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")};
+const todayStr=()=>ymd(new Date());
+const cat=c=>CATS[c]||CATS.combined;
+function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("show"),2600)}
+
+/* =====================================================================
+   STORE  (Firebase live mode  ·  or local demo mode)
+   ===================================================================== */
+const LIVE = !!(window.FIREBASE_CONFIG && FIREBASE_CONFIG.apiKey);
+let remoteEvents=[], settings={...DEFAULT_SETTINGS}, db=null, auth=null;
+let role=null; // null | 'leader' | 'master'
+let myName=localStorage.getItem("y_myName")||"";
+
+function allEvents(){
+  const list=[...remoteEvents];
+  if(!settings.seedPublished){
+    const deleted=new Set(settings.hiddenSeeds||[]);
+    const ids=new Set(list.map(e=>e.id));
+    SEED.forEach(s=>{if(!ids.has(s.id)&&!deleted.has(s.id))list.push(s)});
+  }
+  return list.filter(e=>!e.deleted).sort((a,b)=>a.start.localeCompare(b.start)||(a.time||"").localeCompare(b.time||""));
+}
+
+function loadScript(src){return new Promise((res,rej)=>{const s=document.createElement("script");s.src=src;s.onload=res;s.onerror=rej;document.head.appendChild(s)})}
+
+async function initStore(){
+  if(!LIVE){
+    try{remoteEvents=JSON.parse(localStorage.getItem("y_events")||"[]")}catch{remoteEvents=[]}
+    try{settings={...DEFAULT_SETTINGS,...JSON.parse(localStorage.getItem("y_settings")||"{}")}}catch{}
+    role=sessionStorage.getItem("y_role");
+    renderAll();return;
+  }
+  const v="10.12.2";
+  await loadScript(`https://www.gstatic.com/firebasejs/${v}/firebase-app-compat.js`);
+  await loadScript(`https://www.gstatic.com/firebasejs/${v}/firebase-auth-compat.js`);
+  await loadScript(`https://www.gstatic.com/firebasejs/${v}/firebase-firestore-compat.js`);
+  firebase.initializeApp(FIREBASE_CONFIG);
+  db=firebase.firestore(); auth=firebase.auth();
+  auth.onAuthStateChanged(u=>{
+    role = !u ? null : (u.email===AUTH_ACCOUNTS.master?"master":(u.email===AUTH_ACCOUNTS.leaders?"leader":null));
+    if(role==="master"&&!myName){myName="Unga";localStorage.setItem("y_myName",myName)}
+    renderAll();
+  });
+  db.collection("youthEvents").onSnapshot(snap=>{remoteEvents=snap.docs.map(d=>({id:d.id,...d.data()}));renderAll()},err=>console.error(err));
+  db.collection("youthSettings").onSnapshot(snap=>{
+    const main=snap.docs.find(d=>d.id==="main")?.data()||{};
+    const board=snap.docs.find(d=>d.id==="board")?.data()||{};
+    settings={...DEFAULT_SETTINGS,...main,...board,invites:{...(board.invites||{})}};
+    renderAll();
+  });
+}
+const saveLocal=()=>{localStorage.setItem("y_events",JSON.stringify(remoteEvents));localStorage.setItem("y_settings",JSON.stringify(settings))};
+
+async function saveEvent(ev){
+  ev.updatedAt=Date.now();
+  if(!LIVE){const i=remoteEvents.findIndex(e=>e.id===ev.id);if(i>=0)remoteEvents[i]=ev;else remoteEvents.push(ev);saveLocal();renderAll();return}
+  const {id,...data}=ev; await db.collection("youthEvents").doc(id).set(data);
+}
+async function deleteEvent(ev){
+  if(ev.seed&&!settings.seedPublished){ // hide unpublished starter event
+    const hidden=[...(settings.hiddenSeeds||[]),ev.id];
+    await saveSettings({hiddenSeeds:hidden},"main");return;
+  }
+  if(!LIVE){remoteEvents=remoteEvents.filter(e=>e.id!==ev.id);saveLocal();renderAll();return}
+  await db.collection("youthEvents").doc(ev.id).delete();
+}
+async function saveSettings(patch,docName){
+  if(!LIVE){settings={...settings,...patch};saveLocal();renderAll();return}
+  await db.collection("youthSettings").doc(docName).set(patch,{merge:true});
+}
+async function publishSeed(){
+  const hidden=new Set(settings.hiddenSeeds||[]);
+  const toAdd=SEED.filter(s=>!hidden.has(s.id)&&!remoteEvents.some(e=>e.id===s.id));
+  if(!LIVE){remoteEvents.push(...toAdd.map(s=>({...s})));settings.seedPublished=true;saveLocal();renderAll();return}
+  const b=db.batch();toAdd.forEach(s=>{const {id,...d}=s;b.set(db.collection("youthEvents").doc(id),d)});
+  b.set(db.collection("youthSettings").doc("main"),{seedPublished:true},{merge:true});await b.commit();
+}
+
+/* permissions */
+const canEdit=ev=>role==="master"||(role==="leader"&&ev.author&&myName&&ev.author.trim().toLowerCase()===myName.trim().toLowerCase());
+
+async function login(code){
+  code=code.trim(); if(!code)return false;
+  if(!LIVE){
+    const h=await sha(code);
+    if(h===CODE_HASH.master)role="master";
+    else if(await sha(code.toLowerCase())===CODE_HASH.leader)role="leader";
+    else return false;
+    sessionStorage.setItem("y_role",role);return true;
+  }
+  try{await auth.signInWithEmailAndPassword(AUTH_ACCOUNTS.master,code+AUTH_ACCOUNTS.suffix);role="master";return true}catch(e){}
+  try{await auth.signInWithEmailAndPassword(AUTH_ACCOUNTS.leaders,code.toLowerCase()+AUTH_ACCOUNTS.suffix);role="leader";return true}catch(e){}
+  return false;
+}
+async function logout(){role=null;sessionStorage.removeItem("y_role");if(LIVE&&auth)await auth.signOut();renderAll();toast("Signed out — view only")}
+
+/* =====================================================================
+   NAVIGATION
+   ===================================================================== */
+let current="home";
+function go(v){current=v;$$(".view").forEach(x=>x.classList.toggle("active",x.id==="view-"+v));$$("[data-go]").forEach(b=>b.classList.toggle("active",b.dataset.go===v&&(b.classList.contains("tab")||b.classList.contains("bnav"))));window.scrollTo({top:0,behavior:"smooth"});if(v==="calendar")renderCalendar();observeReveals()}
+document.addEventListener("click",e=>{const g=e.target.closest("[data-go]");if(g)go(g.dataset.go)});
+window.addEventListener("scroll",()=>$("#topbar").classList.toggle("scrolled",scrollY>8),{passive:true});
+
+/* =====================================================================
+   RENDER — HOME
+   ===================================================================== */
+function renderAll(){
+  document.title=`${settings.wardName} · Rejoice in Christ 2027`;
+  $("#brandName").textContent=settings.wardName;$("#footWard").textContent=settings.wardName;
+  $("#modeFlag").innerHTML=LIVE?"Live calendar":'<span class="demo-flag">DEMO MODE · changes stay on this device</span>';
+  $("#tickerText").textContent=settings.announcement||DEFAULT_SETTINGS.announcement;
+  renderLeaderBar();renderUpNext();renderStats();renderUpcoming();renderInvite();renderFilters();
+  if(current==="calendar")renderCalendar();
+  renderResources();observeReveals();
+}
+
+function renderLeaderBar(){
+  const bar=$("#leaderBar"),fab=$("#fab"),lb=$("#lockBtn");
+  lb.classList.toggle("on",!!role);
+  $("#lockIco").innerHTML=role?'<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.5-2"/>':'<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>';
+  fab.classList.toggle("show",!!role);
+  if(!role){bar.classList.remove("show");return}
+  bar.classList.add("show");
+  bar.innerHTML=`<span>${role==="master"?"👑 Master":"✏️ Leader"} · <span class="who">${esc(myName||"(set your name)")}</span></span>
+    <span class="hint" style="flex:1">${role==="master"?"You can change anything and everything.":"You can add events and edit or delete the ones you posted."}</span>
+    <button class="btn btn-line" onclick="openNameSheet()">Change name</button>
+    <button class="btn btn-line" onclick="openBoardSheet()">📣 News & invitation</button>
+    ${role==="master"?'<button class="btn btn-dark" onclick="openMasterSheet()">👑 Master settings</button>':""}
+    <button class="btn btn-line" onclick="logout()">Sign out</button>`;
+}
+
+let cdTimer=null;
+function nextEvent(){const t=todayStr();return allEvents().find(e=>e.cat!=="family"&&(e.end||e.start)>=t)}
+function renderUpNext(){
+  const box=$("#upNext"),ev=nextEvent();clearInterval(cdTimer);
+  if(!ev){box.innerHTML='<div class="lbl">Up next</div><h3>Nothing scheduled yet</h3>';return}
+  const c=cat(ev.cat);box.style.setProperty("--c",c.color);
+  box.innerHTML=`<div class="lbl"><span class="pulse"></span> Up next</div>
+    <h3>${c.emo} ${esc(ev.title)}</h3>
+    <div class="meta">${fmtRange(ev)} · ${fmtTimes(ev)}${ev.location?" · "+esc(ev.location):""}</div>
+    <div class="countdown">${["Days","Hrs","Min","Sec"].map(l=>`<div class="cd"><b data-u="${l}">0</b><small>${l}</small></div>`).join("")}</div>
+    <div class="row"><button class="btn btn-gold" onclick="openEvent('${ev.id}')">See details</button><button class="btn btn-ghost" onclick="imIn('${ev.id}')">🙌 I’m in!</button></div>`;
+  const target=parse(ev.start);if(ev.time){const [h,m]=ev.time.split(":");target.setHours(+h,+m)}else target.setHours(18,0);
+  const tick=()=>{let s=Math.max(0,(target-new Date())/1000);const v={Days:Math.floor(s/86400),Hrs:Math.floor(s%86400/3600),Min:Math.floor(s%3600/60),Sec:Math.floor(s%60)};
+    for(const k in v){const el=box.querySelector(`[data-u="${k}"]`);if(el&&el.textContent!==String(v[k])){el.textContent=v[k];el.classList.remove("tick");void el.offsetWidth;el.classList.add("tick")}}};
+  tick();cdTimer=setInterval(tick,1000);
+}
+function renderStats(){
+  const ev=allEvents(),t=todayStr();
+  const temple=ev.filter(e=>e.cat==="temple"&&e.start>=t).length;
+  const combined=ev.filter(e=>e.cat==="combined"&&e.start>=t).length;
+  const camp=ev.find(e=>["camp","yw","ym"].includes(e.cat)&&/camp/i.test(e.title)&&e.start>=t);
+  const days=camp?Math.ceil((parse(camp.start)-parse(t))/864e5):0;
+  const y0=new Date(2027,0,1),y1=new Date(2028,0,1),now=new Date();
+  const pct=Math.max(0,Math.min(1,(now-y0)/(y1-y0)));
+  const before=now<y0,dl=Math.ceil((y0-now)/864e5);
+  const C=2*Math.PI*30;
+  $("#stats").innerHTML=`
+   <div class="card stat reveal"><span class="ico">🕊️</span><div class="n" data-count="${temple}">0</div><div class="t">Temple trips ahead</div></div>
+   <div class="card stat reveal"><span class="ico">🎉</span><div class="n" data-count="${combined}">0</div><div class="t">Combined activities ahead</div></div>
+   <div class="card stat reveal" style="grid-column:span 2"><span class="ico">🏕️</span><div class="n" data-count="${days}">0</div><div class="t">${camp?`Days until ${esc(camp.title)}`:"No camp scheduled yet"}</div></div>
+   <div class="card ring reveal"><svg width="76" height="76" viewBox="0 0 76 76"><circle cx="38" cy="38" r="30" fill="none" stroke="#EFE7DA" stroke-width="9"/><circle id="ringArc" cx="38" cy="38" r="30" fill="none" stroke="url(#rg)" stroke-width="9" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C}" transform="rotate(-90 38 38)" style="transition:stroke-dashoffset 1.6s cubic-bezier(.2,.8,.2,1)"/><defs><linearGradient id="rg"><stop offset="0" stop-color="#B88B12"/><stop offset="1" stop-color="#F0CF6E"/></linearGradient></defs><text x="38" y="43" text-anchor="middle" font-family="Fraunces" font-weight="700" font-size="16" fill="#4A3826">${before?"’27":Math.round(pct*100)+"%"}</text></svg>
+   <div><div class="rh">${before?`${dl} days until 2027`:"2027 progress"}</div><div class="rt">${before?"A new year to rejoice in Christ — let’s start strong.":"Keep going — every activity, every trip counts."}</div></div></div>`;
+  requestAnimationFrame(()=>{const a=$("#ringArc");if(a)setTimeout(()=>a.style.strokeDashoffset=C*(1-(before?0.04:pct)),200)});
+  $$("[data-count]").forEach(el=>countUp(el,+el.dataset.count));
+}
+function countUp(el,to){const t0=performance.now(),d=1100;const f=n=>{const p=Math.min(1,(n-t0)/d);el.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)}
+
+function evItem(e){const c=cat(e.cat),d=parse(e.start);
+  return `<button class="card ev-item reveal" onclick="openEvent('${e.id}')" style="--c:${c.color}">
+    <div class="datechip" style="--c:${c.color}"><div class="m">${MON[d.getMonth()].slice(0,3)}</div><div class="d">${d.getDate()}</div><div class="w">${DOW[d.getDay()]}</div></div>
+    <div style="min-width:0"><div class="ti">${esc(e.title)}</div><div class="sub">${fmtRange(e)} · ${fmtTimes(e)}${e.location?" · "+esc(e.location):""}</div><div style="margin-top:6px"><span class="pill" style="--c:${c.color}">${c.emo} ${c.label}</span></div></div>
+    <span class="arrow">›</span></button>`}
+function renderUpcoming(){
+  const t=todayStr(),list=allEvents().filter(e=>(e.end||e.start)>=t&&e.cat!=="family").slice(0,5);
+  $("#upcomingList").innerHTML=list.length?list.map(evItem).join(""):'<div class="card empty">Nothing coming up yet.</div>';
+}
+function monthKey(d=new Date()){return `${d.getFullYear()}-${pad(d.getMonth()+1)}`}
+function renderInvite(){
+  const k=monthKey(),txt=settings.invites?.[k]||DEFAULT_INVITE,d=new Date();
+  $("#inviteCard").innerHTML=`<div class="aims"><span class="aim">Believe</span><span class="aim">Belong</span><span class="aim">Become</span></div>
+   <h3>${MON[d.getMonth()]} ${d.getFullYear()}</h3><blockquote>${esc(txt)}</blockquote>
+   <div class="row" style="margin-top:14px"><a class="btn btn-line" href="https://www.churchofjesuschrist.org/study/manual/for-the-strength-of-youth?lang=eng" target="_blank" rel="noopener">📖 Open the FSY guide</a><button class="btn btn-dark" onclick="imIn()">✅ I accept the invitation</button></div>`;
+}
+
+/* =====================================================================
+   CALENDAR
+   ===================================================================== */
+const now0=new Date();
+let calView="month", cursor=new Date(Math.max(now0,new Date(2026,11,1)).valueOf()); cursor.setDate(1);
+let active=new Set(Object.keys(CATS)), query="", lastDir=0;
+
+function renderFilters(){
+  $("#filters").innerHTML=`<button class="chip ${active.size===Object.keys(CATS).length?"on":""}" style="--c:#B8691E" data-f="all"><span class="dot"></span>All</button>`+
+   Object.entries(CATS).map(([k,c])=>`<button class="chip ${active.has(k)?"on":"off"}" style="--c:${c.color}" data-f="${k}"><span class="dot"></span>${c.emo} ${c.label.replace(" (no activity)","")}</button>`).join("");
+  $("#legend").innerHTML=Object.values(CATS).map(c=>`<span><i style="--c:${c.color}"></i>${c.label}</span>`).join("");
+}
+$("#filters").addEventListener("click",e=>{const b=e.target.closest("[data-f]");if(!b)return;const f=b.dataset.f,all=Object.keys(CATS);
+  if(f==="all")active=new Set(all);
+  else if(active.size===all.length)active=new Set([f]);
+  else{active.has(f)?active.delete(f):active.add(f);if(!active.size)active=new Set(all)}
+  renderFilters();renderCalendar()});
+$("#searchBox").addEventListener("input",e=>{query=e.target.value.toLowerCase();renderCalendar()});
+function visible(){return allEvents().filter(e=>active.has(e.cat)&&(!query||[e.title,e.desc,e.location,e.lead].join(" ").toLowerCase().includes(query)))}
+function eventsOn(list,ds){return list.filter(e=>e.start<=ds&&(e.end||e.start)>=ds)}
+
+$("#viewSeg").addEventListener("click",e=>{const b=e.target.closest("[data-v]");if(!b)return;calView=b.dataset.v;$$("#viewSeg button").forEach(x=>x.classList.toggle("active",x===b));renderCalendar()});
+$("#prevBtn").onclick=()=>shift(-1);$("#nextBtn").onclick=()=>shift(1);
+$("#todayBtn").onclick=()=>{cursor=new Date();cursor.setDate(1);lastDir=0;renderCalendar()};
+function shift(n){lastDir=n;if(calView==="year")cursor.setFullYear(cursor.getFullYear()+n);else cursor.setMonth(cursor.getMonth()+n);renderCalendar()}
+let touchX=null;$("#calBody").addEventListener("touchstart",e=>touchX=e.touches[0].clientX,{passive:true});
+$("#calBody").addEventListener("touchend",e=>{if(touchX==null)return;const dx=e.changedTouches[0].clientX-touchX;if(Math.abs(dx)>60&&calView!=="agenda")shift(dx<0?1:-1);touchX=null});
+
+function renderCalendar(){
+  const body=$("#calBody"),list=visible();
+  if(calView==="month"){
+    $("#calTitle").textContent=`${MON[cursor.getMonth()]} ${cursor.getFullYear()}`;
+    const first=new Date(cursor.getFullYear(),cursor.getMonth(),1),start=addDays(first,-first.getDay()),t=todayStr();
+    let cells="";
+    for(let i=0;i<42;i++){
+      const d=addDays(start,i),ds=ymd(d),evs=eventsOn(list,ds),fam=evs.find(e=>e.cat==="family"),real=evs.filter(e=>e.cat!=="family");
+      if(i>=35&&d.getMonth()!==cursor.getMonth()&&i%7===0)break;
+      cells+=`<button class="day ${d.getMonth()!==cursor.getMonth()?"other":""} ${ds===t?"today":""} ${fam?"family":""}" data-day="${ds}">
+        <span class="num">${d.getDate()}</span>
+        ${fam?`<span class="fam-label">🏡 ${esc(fam.title)}</span>`:""}
+        ${real.slice(0,3).map(e=>`<span class="mini-ev" style="--c:${cat(e.cat).color}" data-ev="${e.id}">${e.time?fmtTime(e.time).replace(":00","")+" ":""}${esc(e.title)}</span>`).join("")}
+        ${real.length>3?`<span class="more">+${real.length-3} more</span>`:""}
+        <span class="dots">${evs.slice(0,4).map(e=>`<i style="--c:${cat(e.cat).color}"></i>`).join("")}</span>
+      </button>`;
+    }
+    body.innerHTML=`<div class="card month"><div class="dow">${DOW.map(d=>`<div>${d}</div>`).join("")}</div><div class="grid ${lastDir>0?"anim-l":lastDir<0?"anim-r":""}">${cells}</div></div>`;
+  }else if(calView==="agenda"){
+    $("#calTitle").textContent="All events";
+    const t=todayStr(),showPast=body.dataset.past==="1";
+    const items=list.filter(e=>showPast||(e.end||e.start)>=t);
+    let html=`<div class="row" style="margin:8px 0"><button class="btn btn-line" id="pastBtn">${showPast?"Hide past events":"Show past events"}</button></div>`,lastM="";
+    items.forEach(e=>{const d=parse(e.start),m=MON[d.getMonth()]+" "+d.getFullYear();
+      if(m!==lastM){html+=`<div class="agenda-month"><h3>${m}</h3></div>`;lastM=m}
+      html+=e.cat==="family"?`<button class="fam-banner reveal" onclick="openEvent('${e.id}')">🏡<div>${esc(e.title)} — Family Week<small>${fmtRange(e)} · No youth activity</small></div></button>`:evItem(e);
+      html+='<div style="height:10px"></div>'});
+    body.innerHTML=html+(items.length?"":'<div class="card empty">No events match.</div>');
+    $("#pastBtn").onclick=()=>{body.dataset.past=showPast?"0":"1";renderCalendar()};
+  }else{
+    const Y=cursor.getFullYear();$("#calTitle").textContent=String(Y);const t=todayStr();
+    let html='<div class="year">';
+    for(let m=0;m<12;m++){
+      const first=new Date(Y,m,1),dim=new Date(Y,m+1,0).getDate();let g=DOW.map(d=>`<div class="h">${d[0]}</div>`).join("");
+      for(let i=0;i<first.getDay();i++)g+="<div></div>";
+      let count=0;
+      for(let d=1;d<=dim;d++){const ds=`${Y}-${pad(m+1)}-${pad(d)}`,evs=eventsOn(list,ds),real=evs.filter(e=>e.cat!=="family"),fam=evs.some(e=>e.cat==="family");count+=real.filter(e=>e.start===ds).length;
+        g+=`<div class="${real.length?"has":fam?"fam":""} ${ds===t?"td":""}" style="${real.length?`--c:${cat(real[0].cat).color}`:""}" title="${esc(evs.map(e=>e.title).join(", "))}">${d}</div>`}
+      html+=`<button class="card ymonth reveal" data-ym="${m}"><h4>${MON[m]}<span>${count} event${count===1?"":"s"}</span></h4><div class="ygrid">${g}</div></button>`;
+    }
+    body.innerHTML=html+"</div>";
+  }
+  observeReveals();
+}
+$("#calBody").addEventListener("click",e=>{
+  const ev=e.target.closest("[data-ev]");if(ev){e.stopPropagation();openEvent(ev.dataset.ev);return}
+  const ym=e.target.closest("[data-ym]");if(ym){cursor=new Date(cursor.getFullYear(),+ym.dataset.ym,1);calView="month";$$("#viewSeg button").forEach(x=>x.classList.toggle("active",x.dataset.v==="month"));lastDir=1;renderCalendar();return}
+  const day=e.target.closest("[data-day]");if(day)openDay(day.dataset.day);
+});
+
+/* =====================================================================
+   SHEETS (modals)
+   ===================================================================== */
+function openSheet(html,color){const s=$("#sheet");s.innerHTML=html;s.style.setProperty("--c",color||"#C27A24");$("#scrim").classList.add("open");document.body.style.overflow="hidden"}
+function closeSheet(){$("#scrim").classList.remove("open");document.body.style.overflow="";if(location.hash.startsWith("#e="))history.replaceState(null,"",location.pathname+location.search)}
+$("#scrim").addEventListener("click",e=>{if(e.target.id==="scrim")closeSheet()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeSheet()});
+const head=(title,sub,emo)=>`<div class="sheet-head"><button class="x" onclick="closeSheet()" aria-label="Close">✕</button>${emo?`<span class="emo">${emo}</span>`:""}<div class="cat">${sub||""}</div><h3>${esc(title)}</h3></div>`;
+
+function openDay(ds){
+  const evs=eventsOn(visible(),ds),d=parse(ds);
+  openSheet(head(`${DOW[d.getDay()]}, ${MON[d.getMonth()]} ${d.getDate()}`,String(d.getFullYear()),"📆")+
+   `<div class="sheet-body"><div class="ev-list">${evs.length?evs.map(evItem).join(""):'<div class="empty">Nothing scheduled this day.</div>'}</div>
+   ${role?`<div class="row" style="margin-top:14px"><button class="btn btn-gold" onclick="openEditor(null,'${ds}')">+ Add event on this day</button></div>`:""}</div>`);
+  observeReveals();
+}
+
+function openEvent(id){
+  const e=allEvents().find(x=>x.id===id);if(!e){toast("That event isn’t on the calendar anymore");return}
+  const c=cat(e.cat);history.replaceState(null,"","#e="+encodeURIComponent(id));
+  const maps=e.location?`https://maps.google.com/?q=${encodeURIComponent(e.location)}`:"";
+  openSheet(head(e.title,c.label,c.emo)+`<div class="sheet-body">
+    <div class="info">
+      <div><span class="k">📅</span><div><small>When</small>${fmtRange(e)}<br>${fmtTimes(e)}</div></div>
+      ${e.location?`<div><span class="k">📍</span><div><small>Where</small><a href="${maps}" target="_blank" rel="noopener">${esc(e.location)}</a></div></div>`:""}
+      ${e.lead?`<div><span class="k">🙋</span><div><small>In charge</small>${esc(e.lead)}</div></div>`:""}
+      ${e.bring?`<div><span class="k">🎒</span><div><small>Bring</small>${esc(e.bring)}</div></div>`:""}
+      ${e.cat==="family"?`<div><span class="k">🏡</span><div><small>Heads up</small>Family week — no youth activity.</div></div>`:""}
+    </div>
+    ${e.desc?`<div class="desc">${esc(e.desc)}</div>`:""}
+    <div class="row">
+      ${e.cat!=="family"?`<button class="btn btn-gold" onclick="imIn('${e.id}')">🙌 I’m in!</button>`:""}
+      <a class="btn btn-line" href="${gcalLink(e)}" target="_blank" rel="noopener">Google Calendar</a>
+      <button class="btn btn-line" onclick="downloadICS(['${e.id}'])">Apple / Outlook</button>
+      <button class="btn btn-line" onclick="shareEvent('${e.id}')">🔗 Share</button>
+      ${e.link?`<a class="btn btn-line" href="${esc(e.link)}" target="_blank" rel="noopener">More info ↗</a>`:""}
+    </div>
+    ${canEdit(e)?`<div class="row" style="margin-top:12px"><button class="btn btn-dark" onclick="openEditor('${e.id}')">✏️ Edit</button><button class="btn btn-danger" onclick="confirmDelete('${e.id}')">Delete</button></div>`:""}
+    <div class="byline">${e.author?`Posted by ${esc(e.author)}`:""}${e.updatedAt?` · updated ${new Date(e.updatedAt).toLocaleDateString()}`:""}</div>
+  </div>`,c.color);
+}
+
+/* ---------- Editor ---------- */
+function openEditor(id,dateStr){
+  if(!role)return openLogin();
+  if(!myName)return openNameSheet(()=>openEditor(id,dateStr));
+  const e=id?allEvents().find(x=>x.id===id):{title:"",cat:"combined",start:dateStr||todayStr(),end:"",time:"",endTime:"",location:"",lead:"",bring:"",desc:"",link:""};
+  if(id&&!canEdit(e)){toast("You can only edit events you posted");return}
+  openSheet(head(id?"Edit event":"New event",id?"Update details":"Add to the youth calendar","✏️")+`<div class="sheet-body"><form class="form" id="evForm">
+    <label>Title<input name="title" required maxlength="90" value="${esc(e.title)}" placeholder="e.g. Combined Youth — Service Night"></label>
+    <label>Category<select name="cat">${Object.entries(CATS).map(([k,c])=>`<option value="${k}" ${e.cat===k?"selected":""}>${c.emo} ${c.label}</option>`).join("")}</select></label>
+    <div class="two"><label>Start date<input type="date" name="start" required value="${e.start}"></label><label>End date <span class="hint">(multi-day)</span><input type="date" name="end" value="${e.end&&e.end!==e.start?e.end:""}"></label></div>
+    <div class="two"><label>Start time<input type="time" name="time" value="${e.time||""}"></label><label>End time<input type="time" name="endTime" value="${e.endTime||""}"></label></div>
+    <label>Location<input name="location" value="${esc(e.location)}" placeholder="Church building, park, temple…"></label>
+    <div class="two"><label>In charge<input name="lead" value="${esc(e.lead)}" placeholder="Leader or class"></label><label>What to bring<input name="bring" value="${esc(e.bring)}" placeholder="Recommend, $5, water…"></label></div>
+    <label>Details<textarea name="desc" placeholder="What's happening, dress, rides…">${esc(e.desc)}</textarea></label>
+    <label>Link <span class="hint">(optional — sign-up form, Church page…)</span><input type="url" name="link" value="${esc(e.link)}" placeholder="https://"></label>
+    ${!id?`<div class="two"><label>Repeat<select name="repeat"><option value="">Does not repeat</option><option value="weekly">Every week</option><option value="monthly">Monthly (same week & day)</option></select></label><label>Repeat until<input type="date" name="until"></label></div>`:""}
+    ${role==="master"&&id?`<label>Posted by <span class="hint">(master can reassign)</span><input name="author" value="${esc(e.author)}"></label>`:""}
+    <div class="row" style="margin-top:4px"><button class="btn btn-gold" type="submit">${id?"Save changes":"Post event"}</button><button class="btn btn-line" type="button" onclick="closeSheet()">Cancel</button></div>
+  </form></div>`,"#C27A24");
+  $("#evForm").onsubmit=async ev=>{
+    ev.preventDefault();const f=Object.fromEntries(new FormData(ev.target));
+    if(f.end&&f.end<f.start){toast("End date is before start date");return}
+    const base={title:f.title.trim(),cat:f.cat,start:f.start,end:f.end||f.start,time:f.time,endTime:f.endTime,location:f.location.trim(),lead:f.lead.trim(),bring:f.bring.trim(),desc:f.desc.trim(),link:f.link.trim()};
+    try{
+      if(id){await saveEvent({...e,...base,author:(role==="master"&&f.author)?f.author.trim():e.author,seed:false});toast("Saved ✓")}
+      else{
+        const dates=repeatDates(f.start,f.repeat,f.until),series=dates.length>1?"s"+Date.now():"";
+        const span=Math.round((parse(base.end)-parse(base.start))/864e5);
+        for(const d of dates){await saveEvent({...base,id:"e"+Date.now().toString(36)+Math.random().toString(36).slice(2,6),start:d,end:ymd(addDays(parse(d),span)),author:myName,series,createdAt:Date.now()})}
+        toast(dates.length>1?`Posted ${dates.length} events ✓`:"Posted ✓");confetti();
+      }
+      closeSheet();
+    }catch(err){console.error(err);toast("Couldn’t save — check your connection or sign in again")}
+  };
+}
+function repeatDates(start,mode,until){
+  if(!mode||!until||until<start)return[start];
+  const out=[],s=parse(start),u=parse(until);
+  if(mode==="weekly"){for(let d=s;d<=u&&out.length<60;d=addDays(d,7))out.push(ymd(d))}
+  else{const nth=Math.ceil(s.getDate()/7),wd=s.getDay();
+    for(let m=new Date(s.getFullYear(),s.getMonth(),1);m<=u&&out.length<36;m.setMonth(m.getMonth()+1)){
+      const f=new Date(m.getFullYear(),m.getMonth(),1);let day=1+((wd-f.getDay()+7)%7)+(nth-1)*7;
+      const d=new Date(m.getFullYear(),m.getMonth(),day);if(d.getMonth()===m.getMonth()&&d>=s&&d<=u)out.push(ymd(d))}}
+  return out;
+}
+function confirmDelete(id){
+  const e=allEvents().find(x=>x.id===id);if(!canEdit(e))return;
+  const sibs=e.series?allEvents().filter(x=>x.series===e.series&&canEdit(x)):[];
+  openSheet(head("Delete this event?",esc(e.title),"🗑️")+`<div class="sheet-body"><p style="margin-bottom:14px">This removes it for everyone who has the link.</p><div class="row">
+    <button class="btn btn-danger" id="delOne">Delete this one</button>
+    ${sibs.length>1?`<button class="btn btn-danger" id="delAll">Delete all ${sibs.length} in this series</button>`:""}
+    <button class="btn btn-line" onclick="openEvent('${id}')">Keep it</button></div></div>`,"#B3261E");
+  $("#delOne").onclick=async()=>{await deleteEvent(e);closeSheet();toast("Deleted")};
+  if($("#delAll"))$("#delAll").onclick=async()=>{for(const x of sibs)await deleteEvent(x);closeSheet();toast("Series deleted")};
+}
+
+/* ---------- Login / name ---------- */
+function openLogin(){
+  if(role)return;
+  openSheet(head("Leader sign in","Read-only for everyone else","🔐")+`<div class="sheet-body"><form class="form" id="loginForm">
+    <p class="hint" style="font-size:14px">Youth and parents don’t need to sign in — the calendar is open to view. Leaders: enter your code to post.</p>
+    <div class="codebox"><input id="codeIn" type="password" autocomplete="off" placeholder="••••" aria-label="Leader code"></div>
+    <button class="btn btn-gold" type="submit">Unlock</button></form></div>`);
+  setTimeout(()=>$("#codeIn").focus(),150);
+  $("#loginForm").onsubmit=async e=>{e.preventDefault();const btn=e.target.querySelector("button");btn.textContent="Checking…";
+    const ok=await login($("#codeIn").value);btn.textContent="Unlock";
+    if(!ok){const b=$(".codebox");b.classList.remove("shake");void b.offsetWidth;b.classList.add("shake");$("#codeIn").value="";toast("That code didn’t work");return}
+    if(role==="master"&&!myName){myName="Unga";localStorage.setItem("y_myName",myName)}
+    renderAll();confetti();toast(role==="master"?"👑 Master access unlocked":"✏️ Leader access unlocked");
+    if(!myName)openNameSheet();else closeSheet();
+  };
+}
+function openNameSheet(after){
+  openSheet(head("What’s your name?","Shown on events you post","👋")+`<div class="sheet-body"><form class="form" id="nameForm">
+    <label>Your name<input name="n" required value="${esc(myName)}" placeholder="e.g. Sis. Fa or Bro. Langi"></label>
+    <p class="hint">Use the same name every time — it’s how the calendar knows which posts are yours to edit.</p>
+    <button class="btn btn-gold" type="submit">Save</button></form></div>`);
+  $("#nameForm").onsubmit=e=>{e.preventDefault();myName=new FormData(e.target).get("n").trim();localStorage.setItem("y_myName",myName);renderLeaderBar();closeSheet();if(typeof after==="function")after()};
+}
+$("#lockBtn").onclick=()=>role?openSheet(head("Signed in",role==="master"?"Master":"Leader","✅")+`<div class="sheet-body"><div class="row"><button class="btn btn-dark" onclick="closeSheet();logout()">Sign out</button><button class="btn btn-line" onclick="closeSheet()">Close</button></div></div>`):openLogin();
+$("#fab").onclick=()=>openEditor(null,calView==="month"&&current==="calendar"?ymd(new Date(cursor.getFullYear(),cursor.getMonth(),Math.max(1,cursor.getMonth()===new Date().getMonth()?new Date().getDate():1))):null);
+
+/* ---------- News & invitation (leaders) ---------- */
+function openBoardSheet(){
+  const k=monthKey();
+  openSheet(head("News & invitation","Leaders","📣")+`<div class="sheet-body"><form class="form" id="boardForm">
+    <label>Scrolling news banner<textarea name="announcement">${esc(settings.announcement)}</textarea></label>
+    <label>Invitation month<input type="month" name="month" value="${k}"></label>
+    <label>FSY invitation for that month<textarea name="invite" placeholder="${esc(DEFAULT_INVITE)}">${esc(settings.invites?.[k]||"")}</textarea></label>
+    <button class="btn btn-gold" type="submit">Save</button></form></div>`);
+  $("#boardForm [name=month]").onchange=e=>{$("#boardForm [name=invite]").value=settings.invites?.[e.target.value]||""};
+  $("#boardForm").onsubmit=async e=>{e.preventDefault();const f=Object.fromEntries(new FormData(e.target));
+    const invites={...(settings.invites||{}),[f.month]:f.invite.trim()};
+    try{await saveSettings({announcement:f.announcement.trim(),invites},"board");closeSheet();toast("Updated ✓")}catch(err){toast("Couldn’t save")}};
+}
+
+/* ---------- Master ---------- */
+function openMasterSheet(){
+  if(role!=="master")return;
+  openSheet(head("Master settings","Full control","👑")+`<div class="sheet-body"><form class="form" id="masterForm">
+    <label>Calendar name<input name="wardName" value="${esc(settings.wardName)}"></label>
+    <button class="btn btn-gold" type="submit">Save name</button></form>
+    <hr style="border:0;border-top:1px solid var(--line);margin:18px 0">
+    <div class="form">
+      <label>Starter calendar<span class="hint">${settings.seedPublished?"✓ The 2027 starter events are saved as real events — edit them like any other.":"The 2027 events from your PDFs are showing as a starter. Publish them so they’re saved and fully editable."}</span></label>
+      ${settings.seedPublished?"":'<button class="btn btn-dark" id="pubSeed">Publish starter events</button>'}
+      <label style="margin-top:8px">Backup<span class="hint">Download every event as a file, or restore from one.</span></label>
+      <div class="row"><button class="btn btn-line" id="expBtn">⬇️ Export backup</button><label class="btn btn-line" style="text-transform:none;letter-spacing:0;font-size:14px">⬆️ Import backup<input type="file" accept=".json" id="impFile" hidden></label></div>
+    </div></div>`);
+  $("#masterForm").onsubmit=async e=>{e.preventDefault();await saveSettings({wardName:new FormData(e.target).get("wardName").trim()||"Youth"},"main");toast("Saved ✓")};
+  if($("#pubSeed"))$("#pubSeed").onclick=async()=>{await publishSeed();toast("Starter events published ✓");confetti();openMasterSheet()};
+  $("#expBtn").onclick=()=>{const blob=new Blob([JSON.stringify({events:allEvents(),settings},null,2)],{type:"application/json"});dl(blob,`youth-calendar-backup-${todayStr()}.json`)};
+  $("#impFile").onchange=async e=>{const file=e.target.files[0];if(!file)return;try{const data=JSON.parse(await file.text());let n=0;for(const ev of (data.events||[])){if(ev.id&&ev.title&&ev.start){await saveEvent({...ev,seed:false});n++}}toast(`Imported ${n} events ✓`)}catch{toast("That file didn’t look like a backup")}};
+}
+
+/* =====================================================================
+   SHARING / CALENDAR EXPORT
+   ===================================================================== */
+const cmp=s=>s.replace(/-/g,"");
+function gcalLink(e){const endD=ymd(addDays(parse(e.end||e.start),1));
+  const dates=e.time?`${cmp(e.start)}T${e.time.replace(":","")}00/${cmp(e.end||e.start)}T${(e.endTime||e.time).replace(":","")}00`:`${cmp(e.start)}/${cmp(endD)}`;
+  return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(e.title)}&dates=${dates}&details=${encodeURIComponent((e.desc||"")+"\n\n"+location.href.split("#")[0])}&location=${encodeURIComponent(e.location||"")}`}
+function icsEsc(s){return String(s||"").replace(/\\/g,"\\\\").replace(/;/g,"\\;").replace(/,/g,"\\,").replace(/\n/g,"\\n")}
+function downloadICS(ids){
+  const evs=ids?allEvents().filter(e=>ids.includes(e.id)):visible();
+  const lines=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Youth Calendar//EN","CALSCALE:GREGORIAN",`X-WR-CALNAME:${icsEsc(settings.wardName)}`];
+  const stamp=new Date().toISOString().replace(/[-:]/g,"").split(".")[0]+"Z";
+  evs.forEach(e=>{lines.push("BEGIN:VEVENT",`UID:${e.id}@youth-calendar`,`DTSTAMP:${stamp}`);
+    if(e.time){lines.push(`DTSTART:${cmp(e.start)}T${e.time.replace(":","")}00`,`DTEND:${cmp(e.end||e.start)}T${(e.endTime||e.time).replace(":","")}00`)}
+    else lines.push(`DTSTART;VALUE=DATE:${cmp(e.start)}`,`DTEND;VALUE=DATE:${cmp(ymd(addDays(parse(e.end||e.start),1)))}`);
+    lines.push(`SUMMARY:${icsEsc(e.title)}`);if(e.location)lines.push(`LOCATION:${icsEsc(e.location)}`);if(e.desc)lines.push(`DESCRIPTION:${icsEsc(e.desc)}`);lines.push("END:VEVENT")});
+  lines.push("END:VCALENDAR");
+  dl(new Blob([lines.join("\r\n")],{type:"text/calendar"}),ids&&ids.length===1?`${evs[0].title.replace(/[^\w]+/g,"-")}.ics`:"youth-calendar.ics");
+  toast(ids?"Calendar file downloaded — open it to add":"All events downloaded — open the file to add them");
+}
+function dl(blob,name){const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
+$("#icsAllBtn").onclick=()=>downloadICS();
+async function shareUrl(url,title){
+  if(navigator.share){try{await navigator.share({title,url});return}catch(e){if(e.name==="AbortError")return}}
+  try{await navigator.clipboard.writeText(url);toast("Link copied ✓")}catch{prompt("Copy this link:",url)}
+}
+function shareEvent(id){const e=allEvents().find(x=>x.id===id);shareUrl(location.href.split("#")[0]+"#e="+encodeURIComponent(id),e?.title||"Youth event")}
+$("#shareBtn").onclick=async()=>{
+  const url=location.href.split("#")[0];
+  openSheet(head("Share the calendar","View-only link for youth & parents","🔗")+`<div class="sheet-body" style="text-align:center">
+    <p style="margin-bottom:6px">Anyone with this link can see the calendar. Only leaders with a code can change it.</p>
+    <div class="qr" id="qr"></div><p class="hint" style="margin-bottom:14px">Scan to open · great for a sacrament-meeting slide or the hallway board</p>
+    <div class="row" style="justify-content:center"><button class="btn btn-gold" id="doShare">Share link</button></div></div>`);
+  $("#doShare").onclick=()=>shareUrl(url,settings.wardName+" calendar");
+  try{if(!window.QRCode)await loadScript("https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js");new QRCode($("#qr"),{text:url,width:180,height:180,colorDark:"#4A3826",colorLight:"#ffffff"})}catch{$("#qr").textContent=url}
+};
+
+/* =====================================================================
+   FUN — confetti, sparkles, reveals
+   ===================================================================== */
+function imIn(id){confetti();const e=id&&allEvents().find(x=>x.id===id);toast(e?`See you at ${e.title}! 🙌`:"Love it — you’ve got this! ✨")}
+function confetti(){
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  const c=$("#confetti"),x=c.getContext("2d");c.width=innerWidth*devicePixelRatio;c.height=innerHeight*devicePixelRatio;x.scale(devicePixelRatio,devicePixelRatio);
+  const cols=["#E8C35A","#C9A227","#D58A2C","#FFFFFF","#3BA3D9","#D9577B","#3A9D5D"];
+  const P=Array.from({length:140},()=>({x:innerWidth/2+(Math.random()-.5)*120,y:innerHeight*.55,vx:(Math.random()-.5)*14,vy:-Math.random()*16-6,r:Math.random()*7+4,c:cols[Math.random()*cols.length|0],a:Math.random()*6,va:(Math.random()-.5)*.4,s:Math.random()<.3}));
+  let t=0;(function f(){x.clearRect(0,0,innerWidth,innerHeight);P.forEach(p=>{p.vy+=.42;p.vx*=.99;p.x+=p.vx;p.y+=p.vy;p.a+=p.va;x.save();x.translate(p.x,p.y);x.rotate(p.a);x.fillStyle=p.c;
+    if(p.s){x.beginPath();for(let i=0;i<5;i++){x.lineTo(Math.cos((18+i*72)*Math.PI/180)*p.r,-Math.sin((18+i*72)*Math.PI/180)*p.r);x.lineTo(Math.cos((54+i*72)*Math.PI/180)*p.r/2.3,-Math.sin((54+i*72)*Math.PI/180)*p.r/2.3)}x.fill()}
+    else x.fillRect(-p.r/2,-p.r/4,p.r,p.r/2);x.restore()});
+    if(++t<150)requestAnimationFrame(f);else x.clearRect(0,0,innerWidth,innerHeight)})();
+}
+(function sparkles(){const h=$("#hero");for(let i=0;i<22;i++){const s=document.createElement("span");s.className="spark";s.style.left=(5+Math.random()*90)+"%";s.style.bottom=(Math.random()*40)+"px";s.style.setProperty("--d",(6+Math.random()*6)+"s");s.style.setProperty("--delay",(-Math.random()*10)+"s");s.style.setProperty("--x",((Math.random()-.5)*80)+"px");const z=2+Math.random()*5;s.style.width=s.style.height=z+"px";h.appendChild(s)}})();
+let io=null;
+function observeReveals(){
+  if(!("IntersectionObserver" in window)){$$(".reveal").forEach(e=>e.classList.add("in"));return}
+  io=io||new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target)}}),{threshold:.08});
+  $$(".reveal:not(.in)").forEach((el,i)=>{el.style.transitionDelay=Math.min(i*50,300)+"ms";io.observe(el)});
+}
+
+/* ---------- Resources ---------- */
+function renderResources(){
+  $("#resources").innerHTML=RESOURCES.map(g=>`<div class="res-group"><h3>${g.g}</h3><div class="res-grid">${g.items.map(r=>`<a class="card res reveal" href="${r.u}" target="_blank" rel="noopener"><span class="ri">${r.i}</span><div><b>${r.t}</b><small>${r.d}</small></div><span class="ext">↗</span></a>`).join("")}</div></div>`).join("");
+}
+
+/* ---------- Boot ---------- */
+initStore().then(()=>{
+  const m=location.hash.match(/^#e=(.+)$/);if(m)setTimeout(()=>openEvent(decodeURIComponent(m[1])),300);
+}).catch(err=>{console.error(err);toast("Couldn’t connect — showing saved calendar");renderAll()});
+renderAll();
+</script>
+</body>
+</html>
