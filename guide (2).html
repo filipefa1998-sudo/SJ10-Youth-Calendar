@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>How to use the SJ10 Youth Calendar</title>
+<meta name="theme-color" content="#C27A24">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;1,9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#4A3826;--ink-2:#6A5440;--muted:#7A7268;--line:#E7DFD2;--stone:#F6F1E8;--card:#fff;--sun:#B8691E;--grad:linear-gradient(135deg,#B8641C 0%,#D58A2C 55%,#E6A93F 100%);--gold-3:#FFF3CF;--display:"Fraunces",Georgia,serif;--body:"Plus Jakarta Sans",system-ui,-apple-system,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--body);background:var(--stone);color:var(--ink);line-height:1.6;-webkit-tap-highlight-color:transparent}
+a{color:var(--sun);font-weight:700}
+.wrap{max-width:820px;margin:0 auto;padding:0 max(18px,env(safe-area-inset-left))}
+.top{position:sticky;top:0;z-index:10;background:rgba(246,241,232,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.top .wrap{display:flex;align-items:center;gap:12px;height:58px}
+.back{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-weight:800;color:#fff;background:var(--grad);padding:9px 14px;border-radius:12px;font-size:14px}
+.top b{margin-left:auto;font-size:14px;color:var(--muted)}
+.hero{margin:18px 0 8px;border-radius:24px;padding:30px 22px;background:linear-gradient(180deg,#FFF9EE,#F9D9A6);text-align:center;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-50% -20% auto;height:200%;background:repeating-conic-gradient(from 0deg at 50% 100%,rgba(255,255,255,.5) 0 6deg,transparent 6deg 18deg);animation:spin 80s linear infinite;opacity:.7}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero>*{position:relative}
+.hero small{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#8A6A0C}
+.hero h1{font-family:var(--display);font-style:italic;font-size:clamp(32px,7vw,52px);line-height:1.05;margin:8px 0}
+.hero p{max-width:520px;margin:0 auto;color:var(--ink-2)}
+.jump{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:18px 0 6px}
+.jump a{display:flex;align-items:center;gap:10px;padding:14px;border-radius:16px;background:var(--card);border:1px solid var(--line);text-decoration:none;color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.04);transition:transform .15s}
+.jump a:active{transform:scale(.97)}
+.jump span{font-size:24px}
+.jump b{display:block;font-size:14px}.jump i{display:block;font-style:normal;font-size:12px;color:var(--muted);font-weight:600}
+section{margin:34px 0;scroll-margin-top:70px}
+h2{font-family:var(--display);font-size:clamp(26px,5vw,34px);display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.lead{color:var(--muted);margin-bottom:14px}
+h3{font-size:17px;margin:20px 0 8px}
+.steps{list-style:none;counter-reset:s;display:grid;gap:10px}
+.steps li{counter-increment:s;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px 14px 58px;position:relative}
+.steps li::before{content:counter(s);position:absolute;left:14px;top:13px;width:30px;height:30px;border-radius:50%;background:var(--grad);color:#fff;font-weight:800;display:grid;place-items:center;font-size:14px}
+.steps li>b:first-child{display:block}
+.tips{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.tip{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px}
+.tip .e{font-size:22px}.tip>b{display:block;margin:4px 0 2px}.tip p{font-size:14px;color:var(--ink-2)}
+.callout{border-radius:16px;padding:14px 16px;margin:14px 0;background:var(--gold-3);border:1px solid #F0D27A;font-size:15px}
+.callout.warn{background:#FFF0E6;border-color:#F2B98A}
+.kbd{display:inline-block;font-family:ui-monospace,Menlo,monospace;font-size:13px;background:#fff;border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:1px 7px;font-weight:700}
+.tabs{display:flex;gap:6px;background:#EFE7DA;padding:4px;border-radius:12px;margin:8px 0 12px;width:max-content;max-width:100%}
+.tabs button{border:0;background:none;font:inherit;font-weight:800;font-size:14px;padding:8px 14px;border-radius:9px;color:var(--ink-2);cursor:pointer}
+.tabs button.on{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.pane{display:none}.pane.on{display:block}
+.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
+.legend div{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-weight:700;font-size:14px}
+.legend i{width:14px;height:14px;border-radius:4px;flex:none}
+.legend small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:8px;overflow:hidden}
+summary{cursor:pointer;padding:14px 16px;font-weight:800;list-style:none;display:flex;justify-content:space-between;gap:10px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:20px;line-height:1;color:var(--sun);transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p,details ul{padding:0 16px 14px;color:var(--ink-2);font-size:15px}
+details ul{padding-left:34px}
+.perm{width:100%;border-collapse:separate;border-spacing:0;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;font-size:14px}
+.perm th,.perm td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line)}
+.perm th{background:var(--grad);color:#fff;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.perm tr:last-child td{border-bottom:0}
+.perm td:not(:first-child){text-align:center;font-size:16px}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.foot{text-align:center;color:var(--muted);font-size:13px;margin:40px 0 30px}
+.fade{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}.fade.in{opacity:1;transform:none}
+@media print{.top,.jump,.tabs{display:none}.pane{display:block!important}.fade{opacity:1;transform:none}body{background:#fff}section{break-inside:avoid-page}.hero::before{display:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.fade{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="back" href="./">← Back to calendar</a><b>User Guide</b></div></header>
+<main class="wrap">
+
+<div class="hero">
+  <small>✦ SJ10 Youth Calendar ✦</small>
+  <h1>How to use the app</h1>
+  <p>Everything youth, parents and leaders need to know — in about 3 minutes.</p>
+</div>
+
+<nav class="jump">
+  <a href="#everyone"><span>🙌</span><div><b>Youth &amp; Parents</b><i>Viewing the calendar</i></div></a>
+  <a href="#install"><span>📲</span><div><b>Put it on your phone</b><i>iPhone &amp; Android</i></div></a>
+  <a href="#share"><span>💌</span><div><b>Share the Gospel</b><i>Love · Share · Invite</i></div></a>
+  <a href="#leaders"><span>✏️</span><div><b>Leaders</b><i>Posting events</i></div></a>
+  <a href="#master"><span>👑</span><div><b>Master (Unga)</b><i>Full control</i></div></a>
+  <a href="#faq"><span>❓</span><div><b>Questions</b><i>Quick answers</i></div></a>
+</nav>
+
+<!-- ================= EVERYONE ================= -->
+<section id="everyone" class="fade">
+  <h2>🙌 Youth &amp; Parents</h2>
+  <p class="lead">No sign-in needed. Open the link and everything is there. You can look at anything — only leaders can change the calendar.</p>
+
+  <h3>The four tabs</h3>
+  <div class="tips">
+    <div class="tip"><div class="e">🏠</div><b>Home</b><p>The next event with a live countdown, what’s coming up, and this month’s FSY invitation.</p></div>
+    <div class="tip"><div class="e">📅</div><b>Calendar</b><p>Every activity, temple trip, camp and conference. Switch between <b>Month</b>, <b>List</b> and <b>Year</b>.</p></div>
+    <div class="tip"><div class="e">💌</div><b>Share</b><p>Love · Share · Invite ideas, your sharing journey, and easy invites for friends.</p></div>
+    <div class="tip"><div class="e">📚</div><b>Resources</b><p>Official Church links — 2027 youth theme, FSY guide, Come, Follow Me, temple appointments and more.</p></div>
+  </div>
+
+  <h3>Finding what’s happening</h3>
+  <ol class="steps">
+    <li><b>Tap a day</b>Its events show right below the calendar. A small dot under a date means something is planned.</li>
+    <li><b>Tap an event</b>See the time, place, who’s in charge and what to bring.</li>
+    <li><b>Change months</b>Swipe left or right on the calendar, or use the ‹ › arrows. <b>Today</b> jumps back to now.</li>
+    <li><b>Filter or search</b>Tap the colored chips to show only Young Women, Young Men, Temple, Camps… or type in the search box.</li>
+  </ol>
+
+  <h3>What the colors mean</h3>
+  <div class="legend">
+    <div><i style="background:#C9A227"></i><span>Combined Youth<small>3rd week each month</small></span></div>
+    <div><i style="background:#D9577B"></i><span>Young Women</span></div>
+    <div><i style="background:#2F7FB8"></i><span>Young Men</span></div>
+    <div><i style="background:#3BA3D9"></i><span>Temple<small>Baptisms &amp; visits</small></span></div>
+    <div><i style="background:#3A9D5D"></i><span>Camps</span></div>
+    <div><i style="background:#7B61C9"></i><span>Ward &amp; Stake<small>Conferences</small></span></div>
+    <div><i style="background:#E8833A"></i><span>Fundraiser &amp; Service</span></div>
+    <div><i style="background:#1E9E8F"></i><span>Share the Gospel<small>Missionary &amp; friend nights</small></span></div>
+    <div><i style="background:#8A6A4A"></i><span>Churchwide<small>Conference, devotionals</small></span></div>
+    <div><i style="background:repeating-linear-gradient(135deg,#FCEBA9 0 4px,#FFF7DD 4px 8px);border:1px solid #E3C35C"></i><span>Family Week<small>No youth activity</small></span></div>
+  </div>
+
+  <h3>Handy buttons on every event</h3>
+  <div class="tips">
+    <div class="tip"><div class="e">🙌</div><b>I’m in!</b><p>Just for fun — a little celebration. It doesn’t sign you up; tell your leader if you’re coming.</p></div>
+    <div class="tip"><div class="e">📆</div><b>Google / Apple / Outlook</b><p>Adds that event to your own phone calendar so you get a reminder.</p></div>
+    <div class="tip"><div class="e">🔗</div><b>Share</b><p>Sends a link that opens straight to that event — great for group chats.</p></div>
+  </div>
+  <div class="callout">💡 <b>Want everything on your phone’s calendar?</b> On the Calendar tab tap <b>📅</b> (“Add all to my calendar”) and open the file it downloads. Note: it’s a one-time copy — if leaders change something later, check the app for the latest.</div>
+</section>
+
+<!-- ================= INSTALL ================= -->
+<section id="install" class="fade">
+  <h2>📲 Put it on your phone</h2>
+  <p class="lead">Add it to your home screen and it opens like a real app — with the sunrise temple icon.</p>
+  <div class="tabs" role="tablist"><button class="on" data-t="ios">iPhone</button><button data-t="android">Android</button><button data-t="laptop">Laptop</button></div>
+  <div class="pane on" id="p-ios"><ol class="steps">
+    <li><b>Open the link in Safari</b>It must be Safari (not Instagram, Messenger or Chrome) for this to work.</li>
+    <li><b>Tap the Share button</b>The square with an arrow pointing up, at the bottom of the screen.</li>
+    <li><b>Scroll down and tap “Add to Home Screen”</b></li>
+    <li><b>Tap “Add”</b>The SJ10 Youth icon now lives on your home screen.</li>
+  </ol></div>
+  <div class="pane" id="p-android"><ol class="steps">
+    <li><b>Open the link in Chrome</b></li>
+    <li><b>Tap the ⋮ menu</b>Top-right corner.</li>
+    <li><b>Tap “Install app” or “Add to Home screen”</b></li>
+    <li><b>Tap “Install”</b>The SJ10 Youth icon now lives with your apps.</li>
+  </ol></div>
+  <div class="pane" id="p-laptop"><ol class="steps">
+    <li><b>Bookmark it</b>Press <span class="kbd">Ctrl</span> + <span class="kbd">D</span> (or <span class="kbd">⌘</span> + <span class="kbd">D</span> on Mac).</li>
+    <li><b>Keyboard shortcuts</b><span class="kbd">←</span> <span class="kbd">→</span> change months, <span class="kbd">T</span> jumps to today, <span class="kbd">Esc</span> closes a window.</li>
+    <li><b>Install (optional)</b>In Chrome or Edge, click the install icon at the right end of the address bar.</li>
+  </ol></div>
+</section>
+
+<!-- ================= SHARE ================= -->
+<section id="share" class="fade">
+  <h2>💌 Share the Gospel</h2>
+  <p class="lead">The <b>Share</b> tab helps you live Love · Share · Invite — small, natural ways to share what you believe. No calling needed.</p>
+  <ol class="steps">
+    <li><b>Draw a mission card</b>Tap the card for an idea. Pick 💛 Love, 💬 Share or 💌 Invite to choose the kind of idea, or leave it on All.</li>
+    <li><b>Do it, then tap “✓ I did it!”</b>It counts toward your monthly totals, your day streak and badges like 🕯️ First Light and 🔥 7-Day Streak.</li>
+    <li><b>Invite a friend</b>Activities marked <b>👋 Bring a friend</b> show up here. Tap one to send a ready-made invite by text, WhatsApp or Messenger.</li>
+    <li><b>Say it so friends get it</b>Flip the word cards to learn friendlier ways to say Church words, like “Sunday worship service” instead of “sacrament meeting.”</li>
+  </ol>
+  <div class="callout">🔒 <b>Your sharing journey is private.</b> It’s saved only on your own phone. Leaders can’t see it, and nothing is posted anywhere.</div>
+  <h3>For leaders</h3>
+  <div class="tips">
+    <div class="tip"><div class="e">👋</div><b>Mark friend-friendly events</b><p>When posting, check “Great for bringing a friend.” The event gets an “Invite a friend” button and shows on the Share tab.</p></div>
+    <div class="tip"><div class="e">🎯</div><b>Set the ward sharing challenge</b><p>📣 News &amp; invitation → “Sharing challenge.” It shows at the top of the Share tab.</p></div>
+    <div class="tip"><div class="e">💌</div><b>“Share the Gospel” category</b><p>Use the teal category for missionary splits, friend nights or service with the missionaries.</p></div>
+  </div>
+</section>
+
+<!-- ================= LEADERS ================= -->
+<section id="leaders" class="fade">
+  <h2>✏️ For Leaders</h2>
+  <p class="lead">Leaders can post events, update the news banner, and set the monthly FSY invitation. Get the leader code from Unga — please don’t share it with youth.</p>
+
+  <h3>Sign in</h3>
+  <ol class="steps">
+    <li><b>Tap the 🔒 lock</b>Top-right corner of the app.</li>
+    <li><b>Enter the leader code</b>A gold bar appears showing you’re signed in.</li>
+    <li><b>Type your name the first time</b>Use the same name every time (e.g. “Sis. Fa”). That name is how the app knows which events are yours.</li>
+  </ol>
+
+  <h3>Post an event</h3>
+  <ol class="steps">
+    <li><b>Tap the gold ＋ button</b>Bottom-right — or tap a day on the calendar and use <b>+ Add</b>.</li>
+    <li><b>Fill in the details</b>Title, category (this sets the color), date, time and place. Add “what to bring” and who’s in charge — parents love that.</li>
+    <li><b>Multi-day?</b>Set an <b>End date</b> (camps, conferences).</li>
+    <li><b>Repeats?</b>Choose <b>Every week</b> or <b>Monthly (same week &amp; day)</b> and a “Repeat until” date — e.g. every 1st Wednesday through June.</li>
+    <li><b>Tap “Post event”</b>It appears for everyone right away. 🎉</li>
+  </ol>
+
+  <h3>Edit or delete</h3>
+  <ol class="steps">
+    <li><b>Tap your event</b>You’ll see <b>✏️ Edit</b> and <b>Delete</b> — only on events you posted.</li>
+    <li><b>Repeating events</b>When deleting, you can remove just one date or the whole series.</li>
+  </ol>
+
+  <h3>News banner &amp; monthly invitation</h3>
+  <ol class="steps">
+    <li><b>Tap “📣 News &amp; invitation”</b>In the gold leader bar.</li>
+    <li><b>Update the scrolling news</b>Reminders like “Permission slips due Sunday!”</li>
+    <li><b>Set the FSY invitation</b>Pick the month and type the invitation the youth chose on fast Sunday.</li>
+  </ol>
+
+  <div class="callout">✅ <b>Good habits:</b> post at least 2 weeks ahead · always add a time and place · use “Ward &amp; Stake” or “Churchwide” only for those events · sign out on shared devices (🔒 → Sign out).</div>
+</section>
+
+<!-- ================= MASTER ================= -->
+<section id="master" class="fade">
+  <h2>👑 For the Master (Unga)</h2>
+  <p class="lead">The master code unlocks everything. Keep it private.</p>
+  <div class="tips">
+    <div class="tip"><div class="e">✏️</div><b>Edit anything</b><p>Change or delete any event, including other leaders’ posts. You can also change “Posted by” to hand an event to another leader.</p></div>
+    <div class="tip"><div class="e">🏷️</div><b>Rename the calendar</b><p>👑 Master settings → Calendar name.</p></div>
+    <div class="tip"><div class="e">🗓️</div><b>Starter events</b><p>One time only: 👑 Master settings → <b>Publish starter events</b> saves all the 2027 dates so they’re fully editable.</p></div>
+    <div class="tip"><div class="e">💾</div><b>Backups</b><p><b>Export backup</b> downloads every event. <b>Import backup</b> restores them. Do an export once a month.</p></div>
+  </div>
+  <div class="callout warn">🔐 <b>Changing a code:</b> the master code is Unga’s password in Firebase (Authentication → Users → reset password). The leader code is set inside the app’s file — ask Filipe to change it.</div>
+
+  <h3>Who can do what</h3>
+  <div class="scroll"><table class="perm">
+    <tr><th>Action</th><th>Youth &amp; Parents</th><th>Leaders</th><th>Master</th></tr>
+    <tr><td>View, filter, search, share</td><td>✅</td><td>✅</td><td>✅</td></tr>
+    <tr><td>Add events to own phone calendar</td><td>✅</td><td>✅</td><td>✅</td></tr>
+    <tr><td>Post new events</td><td>—</td><td>✅</td><td>✅</td></tr>
+    <tr><td>Edit / delete own events</td><td>—</td><td>✅</td><td>✅</td></tr>
+    <tr><td>Edit / delete anyone’s events</td><td>—</td><td>—</td><td>✅</td></tr>
+    <tr><td>News banner &amp; FSY invitation</td><td>—</td><td>✅</td><td>✅</td></tr>
+    <tr><td>Rename, starter events, backups</td><td>—</td><td>—</td><td>✅</td></tr>
+  </table></div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faq" class="fade">
+  <h2>❓ Questions</h2>
+  <details><summary>Do I need an account or a password?</summary><p>No. Anyone with the link can view everything. Only leaders use a code, and only to make changes.</p></details>
+  <details><summary>Does “I’m in!” sign me up?</summary><p>No — it’s just a fun celebration. For sign-ups, permission forms or rides, talk to your leader (check the event details for a sign-up link).</p></details>
+  <details><summary>I don’t see a change a leader just made.</summary><p>Changes show up within a few seconds. If not, pull down to refresh or close and reopen the app. Check that the footer says “Live calendar.”</p></details>
+  <details><summary>What does the striped “Family Week” mean?</summary><p>No youth activity that week — it’s time for family (holidays, General Conference, spring break).</p></details>
+  <details><summary>The leader code isn’t working.</summary><ul><li>Check for extra spaces.</li><li>Make sure you’re using the leader code, not an old one.</li><li>Still stuck? Ask Unga.</li></ul></details>
+  <details><summary>I can’t edit an event.</summary><p>Leaders can only edit events posted under the exact name they’re signed in with. Tap “Change name” in the gold bar to fix your name, or ask Unga — the master can edit anything.</p></details>
+  <details><summary>I deleted something by mistake.</summary><p>Ask Unga to restore it from the latest backup (👑 Master settings → Import backup), or just post it again.</p></details>
+  <details><summary>Does anyone see what I log on the Share tab?</summary><p>No. Your mission cards, streak and badges are saved only on your own device. If you switch phones or clear your browser, they start over.</p></details>
+  <details><summary>Is this an official Church website?</summary><p>No — it’s our ward’s youth calendar. All the Resources links go to official Church websites.</p></details>
+</section>
+
+<p class="foot">✦ Rejoice in Christ · 2027 ✦<br><a href="./">Open the calendar</a></p>
+</main>
+<script>
+document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tabs button").forEach(x=>x.classList.toggle("on",x===b));document.querySelectorAll(".pane").forEach(p=>p.classList.toggle("on",p.id==="p-"+b.dataset.t))});
+if(/android/i.test(navigator.userAgent))document.querySelector('[data-t=android]').click();
+else if(!/iphone|ipad|ipod/i.test(navigator.userAgent)&&innerWidth>900)document.querySelector('[data-t=laptop]').click();
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.05});
+document.querySelectorAll(".fade").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
