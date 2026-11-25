@@ -20,19 +20,18 @@
    the device you're using). See SETUP.md for the 10-minute guide.
    ============================================================ */
 window.FIREBASE_CONFIG = {
-  apiKey: "",
-  authDomain: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: ""
+  apiKey: "AIzaSyBp1eBn-hD_P0ykmf_AN590IQs_J6UuSdM",
+  authDomain: "sj10-youth-calendar.firebaseapp.com",
+  projectId: "sj10-youth-calendar",
+  storageBucket: "sj10-youth-calendar.firebasestorage.app",
+  messagingSenderId: "345591786677",
+  appId: "1:345591786677:web:d1d4a0a07690c821fe22fc"
 };
-/* Login accounts you create in Firebase → Authentication → Users.
-   Password = the code + "::youth"  (e.g. sj10::youth)            */
+/* MASTER login — Unga's Firebase account (Authentication → Users).
+   Put Unga's real email below. His password in Firebase = SJ10@2027!
+   The leader code (sj10) is checked right here in the page — no account needed. */
 window.AUTH_ACCOUNTS = {
-  leaders: "sj10-leaders@example.com",
-  master:  "sj10-master@example.com",
-  suffix:  "::youth"
+  master: "PUT-UNGA-EMAIL-HERE"
 };
 </script>
 
@@ -581,7 +580,7 @@ const SEED = [
   S("f7","Thanksgiving","family","2027-11-21","2027-11-27",{desc:"Family week — no youth activity."}),
   S("f8","Christmas","family","2027-12-19","2027-12-25",{desc:"Family week — no youth activity."}),
   // Churchwide 2027
-  S("w1","“Rejoice in Christ” Worldwide Discussion for Youth","church","2027-01-16",null,{desc:"Video for youth about the 2027 theme with an Apostle and other leaders. Watch any time after it's released.",link:"https://www.churchofjesuschrist.org/study/youth/events?lang=eng"}),
+  S("w1","“Rejoice in Christ” Worldwide Discussion for Youth","church","2027-01-16",null,{desc:"Video for youth about the 2027 theme with an Apostle and other leaders. Watch any time after it's released.",link:"https://www.churchofjesuschrist.org/study/videos-and-images/broadcasts-and-devotionals/youth-events?lang=eng"}),
   S("w2","RootsTech","church","2027-03-04","2027-03-06",{desc:"Family history conference — online or in Salt Lake City.",link:"https://www.familysearch.org/en/rootstech/"}),
   S("w3","Easter Sunday","church","2027-03-28",null,{desc:"Palm Sunday is March 21. Special Easter sacrament meeting.",link:"https://www.churchofjesuschrist.org/tools/seasonal-resources"}),
   S("w4","General Conference","church","2027-04-03","2027-04-04",{time:"10:00",endTime:"16:00",desc:"Sessions at 10 a.m. and 2 p.m. MDT.",link:"https://www.churchofjesuschrist.org/study/general-conference"}),
@@ -593,7 +592,7 @@ const SEED = [
 const RESOURCES = [
   {g:"✨ 2027 Theme · Rejoice in Christ",items:[
     {i:"🎵",t:"Youth theme hub",d:"Theme music, logo, posters and the theme video",u:"https://youth.churchofjesuschrist.org"},
-    {i:"📺",t:"Worldwide Discussion for Youth",d:"Jan 16, 2027 — the theme explained by Church leaders",u:"https://www.churchofjesuschrist.org/study/youth/events?lang=eng"},
+    {i:"📺",t:"Worldwide Discussion for Youth",d:"Jan 16, 2027 — the theme explained by Church leaders",u:"https://www.churchofjesuschrist.org/study/videos-and-images/broadcasts-and-devotionals/youth-events?lang=eng"},
     {i:"🏛️",t:"Salt Lake Temple Celebration",d:"Apr 5 – Oct 1, 2027 · tickets, virtual tours, events",u:"https://www.templesquare.org/"}
   ]},
   {g:"📖 Believe",items:[
@@ -687,7 +686,8 @@ async function initStore(){
   firebase.initializeApp(FIREBASE_CONFIG);
   db=firebase.firestore(); auth=firebase.auth();
   auth.onAuthStateChanged(u=>{
-    role = !u ? null : (u.email===AUTH_ACCOUNTS.master?"master":(u.email===AUTH_ACCOUNTS.leaders?"leader":null));
+    const saved=sessionStorage.getItem("y_role");
+    role = (u && u.email && u.email.toLowerCase()===AUTH_ACCOUNTS.master.toLowerCase()) ? "master" : (saved==="leader"?"leader":null);
     if(role==="master"&&!myName){myName="Unga";localStorage.setItem("y_myName",myName)}
     renderAll();
   });
@@ -731,15 +731,10 @@ const canEdit=ev=>role==="master"||(role==="leader"&&ev.author&&myName&&ev.autho
 
 async function login(code){
   code=code.trim(); if(!code)return false;
-  if(!LIVE){
-    const h=await sha(code);
-    if(h===CODE_HASH.master)role="master";
-    else if(await sha(code.toLowerCase())===CODE_HASH.leader)role="leader";
-    else return false;
-    sessionStorage.setItem("y_role",role);return true;
-  }
-  try{await auth.signInWithEmailAndPassword(AUTH_ACCOUNTS.master,code+AUTH_ACCOUNTS.suffix);role="master";return true}catch(e){}
-  try{await auth.signInWithEmailAndPassword(AUTH_ACCOUNTS.leaders,code.toLowerCase()+AUTH_ACCOUNTS.suffix);role="leader";return true}catch(e){}
+  if(LIVE){
+    try{await auth.signInWithEmailAndPassword(AUTH_ACCOUNTS.master,code);role="master";sessionStorage.setItem("y_role","master");return true}catch(e){}
+  }else if(await sha(code)===CODE_HASH.master){role="master";sessionStorage.setItem("y_role",role);return true}
+  if(await sha(code.toLowerCase())===CODE_HASH.leader){role="leader";sessionStorage.setItem("y_role",role);return true}
   return false;
 }
 async function logout(){role=null;sessionStorage.removeItem("y_role");if(LIVE&&auth)await auth.signOut();renderAll();toast("Signed out — view only")}
