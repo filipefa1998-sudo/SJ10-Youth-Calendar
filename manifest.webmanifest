@@ -1,0 +1,16 @@
+{
+  "name": "SJ10 Youth Calendar · Rejoice in Christ",
+  "short_name": "SJ10 Youth",
+  "description": "Youth activities, temple trips, camps and conferences through 2027.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FFF8EA",
+  "theme_color": "#C27A24",
+  "icons": [
+    {"src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "icons/maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable"},
+    {"src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}
