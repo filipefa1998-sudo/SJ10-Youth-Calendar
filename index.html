@@ -37,7 +37,7 @@ window.FIREBASE_CONFIG = {
    Put Unga's real email below. His password in Firebase = SJ10@2027!
    The leader code (sj10) is checked right here in the page — no account needed. */
 window.AUTH_ACCOUNTS = {
-  master: "dhau@chevron.com"
+  master: "PUT-UNGA-EMAIL-HERE"
 };
 </script>
 
@@ -356,6 +356,71 @@ input,select,textarea{font:inherit;color:inherit}
 .foot b{color:var(--ink-2)}
 .empty{padding:28px;text-align:center;color:var(--muted)}
 .qr{display:grid;place-items:center;padding:12px;background:#fff;border-radius:14px;border:1px solid var(--line);margin:12px auto;width:max-content}
+
+/* ================= MOBILE & TOUCH POLISH ================= */
+.form,.form label,.form .two>*{min-width:0}
+.form input,.form select,.form textarea{min-width:0;max-width:100%;-webkit-appearance:none;appearance:none;min-height:46px}
+.form select{background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%236A5440' stroke-width='2'/%3E%3C/svg%3E") no-repeat right 14px center;padding-right:36px}
+.form input[type=date],.form input[type=time]{display:block}
+.sheet-body{overflow-x:hidden}
+@media (max-width:380px){.form .two{grid-template-columns:1fr}}
+html,body{-webkit-tap-highlight-color:transparent;overscroll-behavior-y:none}
+button,a,.chip,.day{touch-action:manipulation}
+.topbar{padding-top:env(safe-area-inset-top)}
+.wrap{padding-left:max(18px,env(safe-area-inset-left));padding-right:max(18px,env(safe-area-inset-right))}
+.form input,.form select,.form textarea,.search input,.codebox input{font-size:16px!important}
+.sheet{max-height:92vh;max-height:92dvh;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;position:relative;touch-action:pan-y}
+.sheet.dragging{transition:none!important;animation:none!important}
+.sheet.snap{transition:transform .3s cubic-bezier(.2,.9,.2,1)}
+.grab{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:44px;height:5px;border-radius:9px;background:rgba(255,255,255,.65);z-index:3}
+@media (min-width:721px){.grab{display:none}}
+.scrim.closing{opacity:0}
+.scrim.closing .sheet{transform:translateY(110%);transition:transform .28s ease-in}
+@media (min-width:721px){.scrim.closing .sheet{transform:scale(.96);opacity:0;transition:all .2s ease-in}}
+/* press feedback everywhere (touch-friendly) */
+.card:active,.chip:active,.bnav:active,.navbtn:active,.seg button:active,.day:active,.tab:active,.lockbtn:active{transform:scale(.97)}
+.day:active{background:#FFF6DD}
+/* hover effects only where a real mouse exists (no sticky hovers on phones) */
+@media (hover:none){
+  .ev-item:hover,.res:hover,.ymonth:hover,.lockbtn:hover,.navbtn:hover,.btn-gold:hover,.fab:hover{transform:none;box-shadow:var(--shadow)}
+  .mini-ev:hover{transform:none}.day:hover{background:inherit}
+}
+/* selected day */
+.day.sel{box-shadow:inset 0 0 0 2.5px var(--sun);background:#FFF9EA}
+.day.sel .num{color:var(--sun)}
+.day.today.sel .num{color:#fff}
+#dayPanel{margin-top:14px;scroll-margin-top:80px}
+.dp-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 2px 10px}
+.dp-head h3{font-family:var(--display);font-size:22px}
+.dp-head small{display:block;font-family:var(--body);font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.dp-list{display:grid;gap:10px;animation:viewIn .35s cubic-bezier(.2,.8,.2,1)}
+/* compact calendar toolbar on phones */
+@media (max-width:720px){
+  .cal-head{flex-direction:column;align-items:stretch;gap:10px;margin:14px 0 10px}
+  .cal-title{justify-content:space-between}
+  .cal-title h2{min-width:0;flex:1;font-size:clamp(22px,7vw,30px);white-space:nowrap}
+  .navbtn{width:44px;height:44px;font-size:20px}
+  .cal-head .row{flex-wrap:nowrap}
+  .seg{flex:1}.seg button{flex:1;padding:10px 6px}
+  .toolbar{flex-wrap:nowrap}
+  .toolbar .search{min-width:0;max-width:none;height:44px}
+  .toolbar .tool{width:44px;height:44px;padding:0;flex:none;font-size:18px}
+  .toolbar .bl{display:none}
+  .filters{margin:0 -18px;padding:4px 18px 10px}
+  .chip{padding:9px 13px}
+  .month{border-radius:16px}
+  .day{min-height:58px}
+  .day .num{width:30px;height:30px;font-size:14px}
+  .sheet-body .row .btn{flex:1 1 calc(50% - 8px)}
+  .link-btn{padding:10px 0}
+  .stat .n{font-size:34px}
+  .ticker .track{animation-duration:20s}
+}
+/* pause animations when offscreen or the tab is hidden (battery + smoothness) */
+.paused,.paused *{animation-play-state:paused!important}
+body.hidden *{animation-play-state:paused!important}
+.rays{will-change:transform}
+
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.hero h1 .word{opacity:1;transform:none}}
 </style>
 </head>
@@ -508,13 +573,14 @@ input,select,textarea{font:inherit;color:inherit}
         <button class="btn btn-line" id="todayBtn">Today</button>
       </div>
     </div>
-    <div class="row" style="align-items:center;margin-bottom:8px">
+    <div class="row toolbar" style="align-items:center;margin-bottom:8px">
       <label class="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="searchBox" placeholder="Search events…"></label>
-      <button class="btn btn-line" id="icsAllBtn">📅 Add all to my calendar</button>
-      <button class="btn btn-line" id="shareBtn">🔗 Share</button>
+      <button class="btn btn-line tool" id="icsAllBtn" aria-label="Add all to my calendar">📅<span class="bl"> Add all to my calendar</span></button>
+      <button class="btn btn-line tool" id="shareBtn" aria-label="Share calendar">🔗<span class="bl"> Share</span></button>
     </div>
     <div class="filters" id="filters"></div>
     <div id="calBody"></div>
+    <div id="dayPanel"></div>
     <div class="legend" id="legend"></div>
   </section>
 
@@ -749,7 +815,7 @@ async function logout(){role=null;sessionStorage.removeItem("y_role");if(LIVE&&a
    NAVIGATION
    ===================================================================== */
 let current="home";
-function go(v){current=v;$$(".view").forEach(x=>x.classList.toggle("active",x.id==="view-"+v));$$("[data-go]").forEach(b=>b.classList.toggle("active",b.dataset.go===v&&(b.classList.contains("tab")||b.classList.contains("bnav"))));window.scrollTo({top:0,behavior:"smooth"});if(v==="calendar")renderCalendar();observeReveals()}
+function go(v,push=true){if(push&&v!==current){history.pushState({tab:v},"",v==="home"?location.pathname+location.search:"#"+v)}current=v;$$(".view").forEach(x=>x.classList.toggle("active",x.id==="view-"+v));$$("[data-go]").forEach(b=>b.classList.toggle("active",b.dataset.go===v&&(b.classList.contains("tab")||b.classList.contains("bnav"))));window.scrollTo({top:0,behavior:"smooth"});if(v==="calendar")renderCalendar();observeReveals()}
 document.addEventListener("click",e=>{const g=e.target.closest("[data-go]");if(g)go(g.dataset.go)});
 window.addEventListener("scroll",()=>$("#topbar").classList.toggle("scrolled",scrollY>8),{passive:true});
 
@@ -860,19 +926,32 @@ $("#viewSeg").addEventListener("click",e=>{const b=e.target.closest("[data-v]");
 $("#prevBtn").onclick=()=>shift(-1);$("#nextBtn").onclick=()=>shift(1);
 $("#todayBtn").onclick=()=>{cursor=new Date();cursor.setDate(1);lastDir=0;renderCalendar()};
 function shift(n){lastDir=n;if(calView==="year")cursor.setFullYear(cursor.getFullYear()+n);else cursor.setMonth(cursor.getMonth()+n);renderCalendar()}
-let touchX=null;$("#calBody").addEventListener("touchstart",e=>touchX=e.touches[0].clientX,{passive:true});
-$("#calBody").addEventListener("touchend",e=>{if(touchX==null)return;const dx=e.changedTouches[0].clientX-touchX;if(Math.abs(dx)>60&&calView!=="agenda")shift(dx<0?1:-1);touchX=null});
+let touchX=null,touchY=null;$("#calBody").addEventListener("touchstart",e=>{touchX=e.touches[0].clientX;touchY=e.touches[0].clientY},{passive:true});
+$("#calBody").addEventListener("touchend",e=>{if(touchX==null)return;const dx=e.changedTouches[0].clientX-touchX,dy=e.changedTouches[0].clientY-touchY;
+  if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5&&calView!=="agenda"){buzz(5);shift(dx<0?1:-1)}touchX=null});
+let selDay=null;
+function renderDayPanel(){
+  const p=$("#dayPanel");
+  if(calView!=="month"){p.innerHTML="";return}
+  const inMonth=d=>d&&parse(d).getMonth()===cursor.getMonth()&&parse(d).getFullYear()===cursor.getFullYear();
+  if(!inMonth(selDay)){const t=todayStr();selDay=inMonth(t)?t:null}
+  if(!selDay){p.innerHTML='<p class="hint" style="text-align:center;padding:8px">Tap a day to see what’s happening ✨</p>';return}
+  const d=parse(selDay),evs=eventsOn(visible(),selDay);
+  p.innerHTML=`<div class="dp-head"><h3><small>${selDay===todayStr()?"Today":DOW[d.getDay()]}</small>${MON[d.getMonth()]} ${d.getDate()}</h3>${role?`<button class="btn btn-gold" onclick="openEditor(null,'${selDay}')">+ Add</button>`:""}</div>
+   <div class="dp-list">${evs.length?evs.map(e=>e.cat==="family"?`<button class="fam-banner" onclick="openEvent('${e.id}')">🏡<div>${esc(e.title)} — Family Week<small>No youth activity</small></div></button>`:evItem(e).replace("reveal","reveal in")).join(""):'<div class="card empty">Nothing scheduled — enjoy the day 🌤️</div>'}</div>`;
+}
 
 function renderCalendar(){
   const body=$("#calBody"),list=visible();
   if(calView==="month"){
+    {const inM=x=>x&&parse(x).getMonth()===cursor.getMonth()&&parse(x).getFullYear()===cursor.getFullYear();if(!inM(selDay)){const tt=todayStr();selDay=inM(tt)?tt:null}}
     $("#calTitle").textContent=`${MON[cursor.getMonth()]} ${cursor.getFullYear()}`;
     const first=new Date(cursor.getFullYear(),cursor.getMonth(),1),start=addDays(first,-first.getDay()),t=todayStr();
     let cells="";
     for(let i=0;i<42;i++){
       const d=addDays(start,i),ds=ymd(d),evs=eventsOn(list,ds),fam=evs.find(e=>e.cat==="family"),real=evs.filter(e=>e.cat!=="family");
       if(i>=35&&d.getMonth()!==cursor.getMonth()&&i%7===0)break;
-      cells+=`<button class="day ${d.getMonth()!==cursor.getMonth()?"other":""} ${ds===t?"today":""} ${fam?"family":""}" data-day="${ds}">
+      cells+=`<button class="day ${d.getMonth()!==cursor.getMonth()?"other":""} ${ds===t?"today":""} ${fam?"family":""} ${ds===selDay?"sel":""}" data-day="${ds}" aria-label="${MON[d.getMonth()]} ${d.getDate()}, ${evs.length} event${evs.length===1?"":"s"}">
         <span class="num">${d.getDate()}</span>
         ${fam?`<span class="fam-label">🏡 ${esc(fam.title)}</span>`:""}
         ${real.slice(0,3).map(e=>`<span class="mini-ev" style="--c:${cat(e.cat).color}" data-ev="${e.id}">${e.time?fmtTime(e.time).replace(":00","")+" ":""}${esc(e.title)}</span>`).join("")}
@@ -881,7 +960,9 @@ function renderCalendar(){
       </button>`;
     }
     body.innerHTML=`<div class="card month"><div class="dow">${DOW.map(d=>`<div>${d}</div>`).join("")}</div><div class="grid ${lastDir>0?"anim-l":lastDir<0?"anim-r":""}">${cells}</div></div>`;
+    renderDayPanel();
   }else if(calView==="agenda"){
+    $("#dayPanel").innerHTML="";
     $("#calTitle").textContent="All events";
     const t=todayStr(),showPast=body.dataset.past==="1";
     const items=list.filter(e=>showPast||(e.end||e.start)>=t);
@@ -893,6 +974,7 @@ function renderCalendar(){
     body.innerHTML=html+(items.length?"":'<div class="card empty">No events match.</div>');
     $("#pastBtn").onclick=()=>{body.dataset.past=showPast?"0":"1";renderCalendar()};
   }else{
+    $("#dayPanel").innerHTML="";
     const Y=cursor.getFullYear();$("#calTitle").textContent=String(Y);const t=todayStr();
     let html='<div class="year">';
     for(let m=0;m<12;m++){
@@ -910,16 +992,52 @@ function renderCalendar(){
 $("#calBody").addEventListener("click",e=>{
   const ev=e.target.closest("[data-ev]");if(ev){e.stopPropagation();openEvent(ev.dataset.ev);return}
   const ym=e.target.closest("[data-ym]");if(ym){cursor=new Date(cursor.getFullYear(),+ym.dataset.ym,1);calView="month";$$("#viewSeg button").forEach(x=>x.classList.toggle("active",x.dataset.v==="month"));lastDir=1;renderCalendar();return}
-  const day=e.target.closest("[data-day]");if(day)openDay(day.dataset.day);
+  const day=e.target.closest("[data-day]");
+  if(day){const ds=day.dataset.day,dd=parse(ds);buzz(4);
+    if(dd.getMonth()!==cursor.getMonth()){lastDir=dd<cursor?-1:1;cursor=new Date(dd.getFullYear(),dd.getMonth(),1);selDay=ds;renderCalendar();return}
+    selDay=ds;$$("#calBody .day.sel").forEach(x=>x.classList.remove("sel"));day.classList.add("sel");renderDayPanel();
+    const p=$("#dayPanel"),r=p.getBoundingClientRect();if(r.top>innerHeight-140)p.scrollIntoView({behavior:"smooth",block:"start"});}
 });
 
 /* =====================================================================
    SHEETS (modals)
    ===================================================================== */
-function openSheet(html,color){const s=$("#sheet");s.innerHTML=html;s.style.setProperty("--c",color||"#C27A24");$("#scrim").classList.add("open");document.body.style.overflow="hidden"}
-function closeSheet(){$("#scrim").classList.remove("open");document.body.style.overflow="";if(location.hash.startsWith("#e="))history.replaceState(null,"",location.pathname+location.search)}
+let sheetOpen=false,pendingBack=false,ignorePop=false;
+const buzz=(p=8)=>{try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}};
+function openSheet(html,color){
+  const s=$("#sheet"),sc=$("#scrim");
+  s.innerHTML='<div class="grab"></div>'+html;s.style.setProperty("--c",color||"#C27A24");s.style.transform="";s.scrollTop=0;
+  if(pendingBack){pendingBack=false}            // reuse the history entry we were about to pop
+  else if(!sheetOpen){history.pushState({...(history.state||{}),sheet:1},"",location.href)}
+  sheetOpen=true;sc.classList.remove("closing");sc.classList.add("open");document.body.style.overflow="hidden";
+}
+function reallyClose(){
+  const sc=$("#scrim");if(!sheetOpen)return;sheetOpen=false;
+  sc.classList.add("closing");document.body.style.overflow="";
+  setTimeout(()=>{if(!sheetOpen){sc.classList.remove("open","closing");$("#sheet").style.transform=""}},260);
+}
+function closeSheet(){
+  reallyClose();
+  if(history.state&&history.state.sheet){pendingBack=true;setTimeout(()=>{if(pendingBack){pendingBack=false;ignorePop=true;history.back()}},0)}
+}
+window.addEventListener("popstate",()=>{
+  if(ignorePop){ignorePop=false;return}
+  if(sheetOpen){reallyClose();return}
+  const h=location.hash.replace("#","");go(["calendar","resources"].includes(h)?h:"home",false);
+});
+/* swipe the sheet down to close it */
+(function(){const s=$("#sheet");let y0=null,dy=0;
+  s.addEventListener("touchstart",e=>{if(s.scrollTop>0||matchMedia("(min-width:721px)").matches){y0=null;return}y0=e.touches[0].clientY;dy=0},{passive:true});
+  s.addEventListener("touchmove",e=>{if(y0==null)return;dy=e.touches[0].clientY-y0;if(dy>0){s.classList.add("dragging");s.style.transform=`translateY(${dy}px)`}},{passive:true});
+  s.addEventListener("touchend",()=>{if(y0==null)return;s.classList.remove("dragging");
+    if(dy>110){buzz(6);closeSheet()}else{s.classList.add("snap");s.style.transform="";setTimeout(()=>s.classList.remove("snap"),300)}y0=null});
+})();
 $("#scrim").addEventListener("click",e=>{if(e.target.id==="scrim")closeSheet()});
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closeSheet()});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape"&&sheetOpen){closeSheet();return}
+  if(sheetOpen||/INPUT|TEXTAREA|SELECT/.test(document.activeElement?.tagName))return;
+  if(current==="calendar"&&calView!=="agenda"){if(e.key==="ArrowLeft")shift(-1);if(e.key==="ArrowRight")shift(1);if(e.key==="t")$("#todayBtn").click()}
+});
 const head=(title,sub,emo)=>`<div class="sheet-head"><button class="x" onclick="closeSheet()" aria-label="Close">✕</button>${emo?`<span class="emo">${emo}</span>`:""}<div class="cat">${sub||""}</div><h3>${esc(title)}</h3></div>`;
 
 function openDay(ds){
@@ -932,7 +1050,7 @@ function openDay(ds){
 
 function openEvent(id){
   const e=allEvents().find(x=>x.id===id);if(!e){toast("That event isn’t on the calendar anymore");return}
-  const c=cat(e.cat);history.replaceState(null,"","#e="+encodeURIComponent(id));
+  const c=cat(e.cat);
   const maps=e.location?`https://maps.google.com/?q=${encodeURIComponent(e.location)}`:"";
   openSheet(head(e.title,c.label,c.emo)+`<div class="sheet-body">
     <div class="info">
@@ -953,6 +1071,7 @@ function openEvent(id){
     ${canEdit(e)?`<div class="row" style="margin-top:12px"><button class="btn btn-dark" onclick="openEditor('${e.id}')">✏️ Edit</button><button class="btn btn-danger" onclick="confirmDelete('${e.id}')">Delete</button></div>`:""}
     <div class="byline">${e.author?`Posted by ${esc(e.author)}`:""}${e.updatedAt?` · updated ${new Date(e.updatedAt).toLocaleDateString()}`:""}</div>
   </div>`,c.color);
+  history.replaceState(history.state,"","#e="+encodeURIComponent(id));
 }
 
 /* ---------- Editor ---------- */
@@ -1021,7 +1140,7 @@ function openLogin(){
   setTimeout(()=>$("#codeIn").focus(),150);
   $("#loginForm").onsubmit=async e=>{e.preventDefault();const btn=e.target.querySelector("button");btn.textContent="Checking…";
     const ok=await login($("#codeIn").value);btn.textContent="Unlock";
-    if(!ok){const b=$(".codebox");b.classList.remove("shake");void b.offsetWidth;b.classList.add("shake");$("#codeIn").value="";toast("That code didn’t work");return}
+    if(!ok){buzz([30,60,30]);const b=$(".codebox");b.classList.remove("shake");void b.offsetWidth;b.classList.add("shake");$("#codeIn").value="";toast("That code didn’t work");return}
     if(role==="master"&&!myName){myName="Unga";localStorage.setItem("y_myName",myName)}
     renderAll();confetti();toast(role==="master"?"👑 Master access unlocked":"✏️ Leader access unlocked");
     if(!myName)openNameSheet();else closeSheet();
@@ -1110,7 +1229,7 @@ $("#shareBtn").onclick=async()=>{
 /* =====================================================================
    FUN — confetti, sparkles, reveals
    ===================================================================== */
-function imIn(id){confetti();const e=id&&allEvents().find(x=>x.id===id);toast(e?`See you at ${e.title}! 🙌`:"Love it — you’ve got this! ✨")}
+function imIn(id){buzz([12,40,12]);confetti();const e=id&&allEvents().find(x=>x.id===id);toast(e?`See you at ${e.title}! 🙌`:"Love it — you’ve got this! ✨")}
 function confetti(){
   if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;
   const c=$("#confetti"),x=c.getContext("2d");c.width=innerWidth*devicePixelRatio;c.height=innerHeight*devicePixelRatio;x.scale(devicePixelRatio,devicePixelRatio);
@@ -1121,7 +1240,7 @@ function confetti(){
     else x.fillRect(-p.r/2,-p.r/4,p.r,p.r/2);x.restore()});
     if(++t<150)requestAnimationFrame(f);else x.clearRect(0,0,innerWidth,innerHeight)})();
 }
-(function sparkles(){const h=$("#hero");for(let i=0;i<22;i++){const s=document.createElement("span");s.className="spark";s.style.left=(5+Math.random()*90)+"%";s.style.bottom=(Math.random()*40)+"px";s.style.setProperty("--d",(6+Math.random()*6)+"s");s.style.setProperty("--delay",(-Math.random()*10)+"s");s.style.setProperty("--x",((Math.random()-.5)*80)+"px");const z=2+Math.random()*5;s.style.width=s.style.height=z+"px";h.appendChild(s)}})();
+(function sparkles(){const h=$("#hero"),n=innerWidth<720?12:22;for(let i=0;i<n;i++){const s=document.createElement("span");s.className="spark";s.style.left=(5+Math.random()*90)+"%";s.style.bottom=(Math.random()*40)+"px";s.style.setProperty("--d",(6+Math.random()*6)+"s");s.style.setProperty("--delay",(-Math.random()*10)+"s");s.style.setProperty("--x",((Math.random()-.5)*80)+"px");const z=2+Math.random()*5;s.style.width=s.style.height=z+"px";h.appendChild(s)}})();
 let io=null;
 function observeReveals(){
   if(!("IntersectionObserver" in window)){$$(".reveal").forEach(e=>e.classList.add("in"));return}
@@ -1135,9 +1254,12 @@ function renderResources(){
 }
 
 /* ---------- Boot ---------- */
+if("IntersectionObserver" in window){new IntersectionObserver(es=>es.forEach(en=>en.target.classList.toggle("paused",!en.isIntersecting)),{threshold:0}).observe($("#hero"))}
+document.addEventListener("visibilitychange",()=>document.body.classList.toggle("hidden",document.hidden));
+{const h=location.hash.replace("#","");if(["calendar","resources"].includes(h))go(h,false);}
 if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('sw.js').catch(()=>{});
 initStore().then(()=>{
-  const m=location.hash.match(/^#e=(.+)$/);if(m)setTimeout(()=>openEvent(decodeURIComponent(m[1])),300);
+  const m=location.hash.match(/^#e=(.+)$/);if(m){history.replaceState(null,"",location.pathname+location.search);setTimeout(()=>openEvent(decodeURIComponent(m[1])),300)}
 }).catch(err=>{console.error(err);toast("Couldn’t connect — showing saved calendar");renderAll()});
 renderAll();
 </script>
