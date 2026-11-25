@@ -908,7 +908,19 @@ const canEdit=ev=>role==="master"||(role==="leader"&&ev.author&&myName&&ev.autho
 async function login(code){
   code=code.trim(); if(!code)return false;
   if(LIVE){
-    try{await auth.signInWithEmailAndPassword(AUTH_ACCOUNTS.master,code);role="master";sessionStorage.setItem("y_role","master");return true}catch(e){}
+    if(code.toLowerCase()!=="sj10"){   // anything other than the leader code is treated as a master attempt
+      const email=(AUTH_ACCOUNTS.master||"").trim();
+      if(!email||email.includes("PUT-UNGA")){toast("Master email isn’t set in index.html yet");return false}
+      let lastErr=null;
+      for(const pw of [code,code+"::youth"]){   // accepts either password style set in Firebase
+        try{await auth.signInWithEmailAndPassword(email,pw);role="master";sessionStorage.setItem("y_role","master");return true}
+        catch(e){lastErr=e;if(e.code&&!/invalid-credential|wrong-password|invalid-login-credentials/.test(e.code))break}
+      }
+      const why={"auth/invalid-credential":"Code or email doesn’t match the Firebase user","auth/invalid-login-credentials":"Code or email doesn’t match the Firebase user","auth/wrong-password":"Code doesn’t match Unga’s Firebase password","auth/user-not-found":"No Firebase user with that email","auth/invalid-email":"The master email in index.html isn’t a valid email","auth/operation-not-allowed":"Email/Password sign-in isn’t enabled in Firebase","auth/too-many-requests":"Too many tries — wait a few minutes","auth/network-request-failed":"No internet connection","auth/api-key-not-valid":"Firebase key is blocked — check the website restriction"}[lastErr?.code]||("Firebase: "+(lastErr?.code||"unknown error"));
+      console.warn("Master sign-in failed:",lastErr);
+      setTimeout(()=>toast("🔐 "+why),50);
+      return false;
+    }
   }else if(await sha(code)===CODE_HASH.master){role="master";sessionStorage.setItem("y_role",role);return true}
   if(await sha(code.toLowerCase())===CODE_HASH.leader){role="leader";sessionStorage.setItem("y_role",role);return true}
   return false;
@@ -1247,7 +1259,7 @@ function openLogin(){
   setTimeout(()=>$("#codeIn").focus(),150);
   $("#loginForm").onsubmit=async e=>{e.preventDefault();const btn=e.target.querySelector("button");btn.textContent="Checking…";
     const ok=await login($("#codeIn").value);btn.textContent="Unlock";
-    if(!ok){buzz([30,60,30]);const b=$(".codebox");b.classList.remove("shake");void b.offsetWidth;b.classList.add("shake");$("#codeIn").value="";toast("That code didn’t work");return}
+    if(!ok){buzz([30,60,30]);const b=$(".codebox");b.classList.remove("shake");void b.offsetWidth;b.classList.add("shake");$("#codeIn").value="";if(!document.querySelector("#toast.show"))toast("That code didn’t work");return}
     if(role==="master"&&!myName){myName="Unga";localStorage.setItem("y_myName",myName)}
     renderAll();confetti();toast(role==="master"?"👑 Master access unlocked":"✏️ Leader access unlocked");
     if(!myName)openNameSheet();else closeSheet();
